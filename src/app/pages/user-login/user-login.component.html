@@ -1,0 +1,29 @@
+<div class="login-page" [@routerTransition]>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop: true}"></ngx-loading>
+    <div class="row justify-content-md-center">
+        <div class="col-md-4 col-md-offset-4 form-login">
+            <img src="assets/images/k2_1.jpg" />
+
+
+            <div *ngIf="!isLoginCredentialCorrect">
+                <p id="passwordHelp" class="text-danger" [innerText]="errorMessage">
+
+                </p>
+            </div>
+
+            <form role="form" (keydown)="keyDownFunction($event)">
+                <div class="form-content">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="userCredential.username" name="username" class="form-control input-lg" id="username" placeholder="Kullanıcı Adı">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="userCredential.password" name="password" class="form-control input-lg" id="password" placeholder="Şifre">
+                    </div>
+                </div>
+                <a class="btn rounded-btn" (click)="onLoggedin()"> GİRİŞ </a> &nbsp;
+                <!-- <a class="btn rounded-btn" [routerLink]="['/signup']">Üye Ol</a> -->
+            </form>
+        </div>
+    </div>
+</div>
