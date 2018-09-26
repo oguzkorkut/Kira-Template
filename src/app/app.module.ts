@@ -1,3 +1,4 @@
+import { BreadcrumbsComponent } from './layout/admin/breadcrumbs/breadcrumbs.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
@@ -33,7 +34,8 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     AppComponent,
     AdminComponent,
-    TitleComponent
+    TitleComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,

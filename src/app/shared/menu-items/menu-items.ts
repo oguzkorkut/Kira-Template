@@ -81,7 +81,7 @@ const MENUITEMS = [
             name: 'Müşteri Listeleme'
           },
           {
-            state: 'create-customer',
+            state: 'customer-create',
             name: 'Yeni Müşteri'
           }
         ]

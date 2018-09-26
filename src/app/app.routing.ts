@@ -18,6 +18,18 @@ export const AppRoutes: Routes = [
       {
         path: 'dashboard',
         loadChildren: './pages/dashboard/dashboard.module#DashboardModule'
+      },
+      {
+        path: 'customer-operations',
+        loadChildren: './pages/customer/customer.module#CustomerModule'
+      },
+      {
+        path: 'tenant-operations',
+        loadChildren: './pages/tenant/tenant.module#TenantModule'
+      },
+      {
+        path: 'rental-operations',
+        loadChildren: './pages/rental/rental.module#RentalModule'
       }
     ]
   },
