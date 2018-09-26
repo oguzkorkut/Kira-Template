@@ -1,5 +1,70 @@
 <div class="row">
+    <div class="col-sm-12">
 
-    Kredi başvurusu
+        <!-- Form wizard with validation card start -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Başvuru Adımları</h5>
+                <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="wizard">
+                            <div class="multi-step-sign-up">
+                                <div id="msform">
+                                    <div id="progressbar">
+                                        <form-wizard (onStepChanged)="onStepChanged($event)">
+                                            <wizard-step [title]="'Kişi Bilgileri'" (onNext)="onStep1Next($event)">
+                                                <fieldset>
+                                                    <img class="logo" src="assets/images/users_2.png" alt="logo.png">
+                                                    <h2 class="fs-title">Kişi Bilgileri</h2>
+                                                    <h3 class="fs-subtitle">Aşağıdak Bilgileri Doldurunuz</h3>
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control" name="tcnumber" placeholder="T.C. Kimlik Numarası" />
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="phoneNumber" placeholder="Cep Telefonu" />
+                                                    </div>
 
+                                                </fieldset>
+
+                                            </wizard-step>
+
+                                            <wizard-step [title]="'Kredi Talebi'" [showNext]="step2.showNext" [showPrev]="step2.showPrev" (onNext)="onStep2Next($event)">
+                                                <fieldset>
+                                                    <img class="logo" src="assets/images/users_2.png" alt="logo.png">
+                                                    <h2 class="fs-title">Kredi Talebi</h2>
+                                                    <h3 class="fs-subtitle">Aşağıdak Bilgileri Doldurunuz</h3>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="firstName" placeholder="Adı" />
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="surname" placeholder="Soyadı" />
+                                                    </div>
+                                                </fieldset>
+                                            </wizard-step>
+
+                                            <wizard-step [title]="'Sonuç'" [showPrev]="step2.showPrev" (onComplete)="onComplete($event)">
+                                                <fieldset>
+                                                    <img class="logo" src="assets/images/users_2.png" alt="logo.png">
+                                                    <h2 class="fs-title">Sonuç</h2>
+                                                    <h3 class="fs-subtitle">Başvurunuz başarılı bir şekilde alınmıştır!</h3>
+                                                </fieldset>
+                                            </wizard-step>
+                                        </form-wizard>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
 </div>

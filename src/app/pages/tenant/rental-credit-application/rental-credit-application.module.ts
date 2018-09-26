@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedModule} from '../../../shared/shared.module';
-import {ChartModule} from 'angular2-chartjs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormWizardModule} from 'angular2-wizard';
 
 export const rentalCreditApplicationRoutes: Routes = [
   {
     path: '',
     component: RentalCreditApplicationComponent,
     data: {
-      breadcrumb: 'Kira Kredisi Başvurusu',
+      breadcrumb: 'Kira Garanti Kredi Başvurusu',
       icon: 'icofont icofont-file-alt bg-c-blue',
       status: true
     }
@@ -22,7 +23,9 @@ export const rentalCreditApplicationRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(rentalCreditApplicationRoutes),
     SharedModule,
-    ChartModule
+    FormsModule,
+    ReactiveFormsModule,
+    FormWizardModule
   ],
   declarations: [RentalCreditApplicationComponent]
 })
