@@ -10,9 +10,9 @@ export const rentalCreditApplicationRoutes: Routes = [
     path: '',
     component: RentalCreditApplicationComponent,
     data: {
-      breadcrumb: 'Default',
-      icon: 'icofont-home bg-c-blue',
-      status: false
+      breadcrumb: 'Kira Kredisi Başvurusu',
+      icon: 'icofont icofont-file-alt bg-c-blue',
+      status: true
     }
   }
 ];

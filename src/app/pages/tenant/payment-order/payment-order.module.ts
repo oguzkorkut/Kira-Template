@@ -10,9 +10,9 @@ export const paymentOrderRoutes: Routes = [
     path: '',
     component: PaymentOrderComponent,
     data: {
-      breadcrumb: 'Default',
-      icon: 'icofont-home bg-c-blue',
-      status: false
+      breadcrumb: 'Ödeme Talimatı',
+      icon: 'icofont icofont-file-alt bg-c-blue',
+      status: true
     }
   }
 ];

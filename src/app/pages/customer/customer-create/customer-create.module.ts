@@ -4,15 +4,16 @@ import {RouterModule, Routes} from '@angular/router';
 import {SharedModule} from '../../../shared/shared.module';
 import {ChartModule} from 'angular2-chartjs';
 import { CustomerCreateComponent } from './customer-create.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export const CustomerCreateRoutes: Routes = [
   {
     path: '',
     component: CustomerCreateComponent,
     data: {
-      breadcrumb: 'Default',
-      icon: 'icofont-home bg-c-blue',
-      status: false
+      breadcrumb: 'Müşteri Oluştur',
+      icon: 'icofont icofont-file-alt bg-c-blue',
+      status: true
     }
   }
 ];
@@ -22,7 +23,8 @@ export const CustomerCreateRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(CustomerCreateRoutes),
     SharedModule,
-    ChartModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [CustomerCreateComponent]
 })

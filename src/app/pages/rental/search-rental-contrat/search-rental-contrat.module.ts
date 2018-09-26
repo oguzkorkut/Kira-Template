@@ -10,9 +10,9 @@ export const searchRentalContratRoutes: Routes = [
     path: '',
     component: SearchRentalContratComponent,
     data: {
-      breadcrumb: 'Default',
-      icon: 'icofont-home bg-c-blue',
-      status: false
+      breadcrumb: 'Kontrat Ara',
+      icon: 'icofont icofont-file-alt bg-c-blue',
+      status: true
     }
   }
 ];

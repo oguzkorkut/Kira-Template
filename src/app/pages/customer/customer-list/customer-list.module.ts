@@ -10,9 +10,9 @@ export const CustomerListRoutes: Routes = [
     path: '',
     component: CustomerListComponent,
     data: {
-      breadcrumb: 'Default',
-      icon: 'icofont-home bg-c-blue',
-      status: false
+      breadcrumb: 'Müşteri Listele',
+      icon: 'icofont icofont-file-alt bg-c-blue',
+      status: true
     }
   }
 ];

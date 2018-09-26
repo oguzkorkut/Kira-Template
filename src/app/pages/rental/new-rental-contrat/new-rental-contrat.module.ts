@@ -9,9 +9,9 @@ export const newRentalContratRoutes: Routes = [
     path: '',
     component: NewRentalContratComponent,
     data: {
-      breadcrumb: 'Default',
-      icon: 'icofont-home bg-c-blue',
-      status: false
+      breadcrumb: 'Kira Kontratı Oluştur',
+      icon: 'icofont icofont-file-alt bg-c-blue',
+      status: true
     }
   }
 ];
