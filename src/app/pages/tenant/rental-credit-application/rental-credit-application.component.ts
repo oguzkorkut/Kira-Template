@@ -31,6 +31,10 @@ export class RentalCreditApplicationComponent implements OnInit {
 
   public step1Form: FormGroup;
 
+  nextValueSteps1 = "Başvur";
+  previousValueStep = "Geri";
+  doneValueStep = "Başvuruyu Tamamla";
+
   /**
    * Kullanici telefon numarasi
    */
@@ -65,10 +69,19 @@ export class RentalCreditApplicationComponent implements OnInit {
       phoneNumber: phoneNumber,
       contratCheckBox: contratCheckBox
     });
+
+    this.onChanges();
   }
 
   ngOnInit() {
 
+  }
+
+  onChanges(): void {
+    var that  = this; 
+    this.step1Form.valueChanges.subscribe(val => {
+      console.log(this.phoneNumber +  val.identityNumber +val.phoneNumber + val.contratCheckBox);
+    });
   }
 
   openMyModal(event) {

@@ -16,7 +16,7 @@
                                     <div id="progressbar">
                                         <form-wizard (onStepChanged)="onStepChanged($event)">
                                             <!--[isValid]="step1Form.form.valid"-->
-                                            <wizard-step [title]="'Kişi Bilgileri'"  (onNext)="onStep1Next($event)">
+                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="false" [previousValue]="Geri" [nextValue]="nextValueSteps1" (onNext)="onStep1Next($event)">
                                                 <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Kişi Bilgileri</h2>
