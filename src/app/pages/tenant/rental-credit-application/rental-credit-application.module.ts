@@ -11,6 +11,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import {UiSwitchModule} from 'ng2-ui-switch/dist';
 import { WizardComponent } from '../../wizard/WizardComponent';
 import { WizardStepComponent } from '../../wizard/wizard-step.component';
+import { PhoneFilterPipe } from '../../../pipe/phone-filter.pipe';
 
 export const rentalCreditApplicationRoutes: Routes = [
   {
@@ -38,7 +39,15 @@ export const rentalCreditApplicationRoutes: Routes = [
   ],
   providers: [
     //{ provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
+    PhoneFilterPipe
   ],
-  declarations: [RentalCreditApplicationComponent,WizardComponent,WizardStepComponent]
+  declarations: [
+      PhoneFilterPipe,
+      RentalCreditApplicationComponent,
+      WizardComponent,
+      WizardStepComponent
+      
+    ],
+    exports: [ PhoneFilterPipe ]
 })
 export class RentalCreditApplicationModule { }

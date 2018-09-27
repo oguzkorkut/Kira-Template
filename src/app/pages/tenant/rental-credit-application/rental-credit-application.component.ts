@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {transition, trigger, style, animate} from '@angular/animations';
 import swal from 'sweetalert2';
+import { PhoneFilterPipe } from '../../../pipe/phone-filter.pipe';
 
 declare var jquery:any;
 declare var $ :any;
@@ -11,7 +12,6 @@ declare var $ :any;
   templateUrl: './rental-credit-application.component.html',
   styleUrls: [
     './rental-credit-application.component.css'
-    //'../../../../../../node_modules/sweetalert2/dist/sweetalert2.min.css',
   ],
   encapsulation: ViewEncapsulation.None,
   animations: [
@@ -38,7 +38,7 @@ export class RentalCreditApplicationComponent implements OnInit {
   /**
    * Kullanici telefon numarasi
    */
-  public phoneNumber: string;
+  public phoneNumber: string = '';
   public identityNumber: string;
   public isRead: boolean = false;
   public contratCheckBox: boolean;
@@ -47,23 +47,16 @@ export class RentalCreditApplicationComponent implements OnInit {
   public modelWithValue: string
   public mask: Array<string | RegExp>
 
-  step2: any = {
-    showNext: true,
-    showPrev: true
-  };
-
-  step3: any = {
-    showSecret: false
-  };
-
   isCompleted = false;
-  constructor() {
+
+  constructor(private  phoneFilter: PhoneFilterPipe ) {
+    
     this.mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-    this.phoneNumber = '';
 
     const identityNumber = new FormControl('', Validators.required);
     const phoneNumber= new FormControl('', Validators.required);
     const contratCheckBox = new FormControl('', [Validators.required]);
+
     this.step1Form = new FormGroup({
       identityNumber: identityNumber,
       phoneNumber: phoneNumber,
@@ -81,7 +74,15 @@ export class RentalCreditApplicationComponent implements OnInit {
     var that  = this; 
     this.step1Form.valueChanges.subscribe(val => {
       console.log(this.phoneNumber +  val.identityNumber +val.phoneNumber + val.contratCheckBox);
+
+      console.log("Phone:" + this.phoneFilter.transform(val.phoneNumber));
     });
+
+    /*
+    this.step1Form.get('phoneNumber').valueChanges.subscribe(val => {
+      console.log(val.phoneNumber);
+    });
+    */
   }
 
   openMyModal(event) {
@@ -119,4 +120,13 @@ export class RentalCreditApplicationComponent implements OnInit {
   onStepChanged(step) {
     console.log('Changed to ' + step.title);
   }
+
+  step2: any = {
+    showNext: true,
+    showPrev: true
+  };
+
+  step3: any = {
+    showSecret: false
+  };
 }
