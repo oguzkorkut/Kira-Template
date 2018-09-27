@@ -15,17 +15,54 @@
                                 <div id="msform">
                                     <div id="progressbar">
                                         <form-wizard (onStepChanged)="onStepChanged($event)">
-                                            <wizard-step [title]="'Kişi Bilgileri'" (onNext)="onStep1Next($event)">
+                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="step1Form.form.valid" (onNext)="onStep1Next($event)">
                                                 <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Kişi Bilgileri</h2>
                                                     <h3 class="fs-subtitle">Aşağıdak Bilgileri Doldurunuz</h3>
-                                                    <div class="input-group">
-                                                        <input type="number" class="form-control" name="tcnumber" placeholder="T.C. Kimlik Numarası" />
-                                                    </div>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" name="phoneNumber" placeholder="Cep Telefonu" />
-                                                    </div>
+                                                    <form #step1Form1="step1Form">
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-3">
+                                                                <label class="col-form-label">T.C. Kimlik Numarası</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" formControlName="identityNumber" class="form-control autonumber" name="identityNumber" currencyMask [(ngModel)]="identityNumber" maxlength="11" minlength="11" placeholder="T.C. Kimlik Numarası" [options]="{ prefix: '', thousands: '', decimal: '', align: 'left', allowZero: false }">
+                                                                <div class="messages text-danger error" *ngIf="step1Form.controls.identityNumber.errors?.required">T.C. kimlik numarası giriniz!</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-3">
+                                                                <label class="col-form-label">Cep Telefonu</label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <input id="1" name="phoneNumber" formControlName="phoneNumber" [(ngModel)]="phoneNumber" [textMask]="{mask: mask}" type="text" class="form-control" placeholder="Cep Telefonu" />
+                                                                <div class="messages text-danger error" *ngIf="step1Form.controls.phoneNumber.errors?.required">Cep telefonu numarası giriniz!</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-3">
+
+                                                            </div>
+                                                            <div class="col-sm-9" style="font-size: 10px">
+                                                                <div class="alert alert-warning" role="alert">Kişisel verilerin işlenmesi ve Aktarılmasına ilişkin
+                                                                    <a class="btn-info btn-outline-info waves-effect md-trigger" (click)="openMyModal('effect-12')">Aydınlatma Metni</a> 'ni Görüntülemek İçin Tıklayınız.(Onaylanmadan önce görüntülemeniz
+                                                                    gerekmektedir.)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-3">
+
+                                                            </div>
+                                                            <div class="col-sm-9" style="text-align: left !important;">
+                                                                <ui-switch id="contratCheckBox" name="contratCheckBox" [(ngModel)]="contratCheckBox" class="js-single" color="#4680ff" switchColor="#fff" size="medium" formControlName="contratCheckBox" [disabled]="!isRead"></ui-switch>
+                                                                <div class="messages text-danger" *ngIf="!contratCheckBox">Aydınlatma Metni'ni Okuyarak Onaylayınız!</div>
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
 
                                                 </fieldset>
 
@@ -65,6 +102,19 @@
             </div>
         </div>
 
+        <app-modal-animation [modalID]="'effect-12'" [modalClass]="'md-effect-12'">
+            <h3>Aydınlatma Metni</h3>
+            <div>
+                <p>XXX-XXX-YYY:</p>
+                <ul>
+                    <li><strong>XXX: </strong>yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy</li>
+                    <li><strong>ZZZ: </strong> zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</li>
+                    <li><strong>TTT:  </strong> tttttttttttttt.</li>
+                </ul>
+                <button (click)="closeMyModal($event,true)" class="btn btn-danger md-close">Okudum</button>
+            </div>
+            <button (click)="closeMyModal($event,false)" aria-label="Close" class="md-close-btn"><i class="icofont icofont-ui-close"></i></button>
+        </app-modal-animation>
 
     </div>
 </div>

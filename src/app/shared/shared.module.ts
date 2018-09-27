@@ -23,7 +23,6 @@ import { NotificationsService } from 'angular2-notifications';
   imports: [
     CommonModule,
     ScrollModule,
-    
     NgbModule.forRoot()
   ],
   declarations: [

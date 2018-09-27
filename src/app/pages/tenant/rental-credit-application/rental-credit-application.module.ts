@@ -5,6 +5,10 @@ import {RouterModule, Routes} from '@angular/router';
 import {SharedModule} from '../../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {FormWizardModule} from 'angular2-wizard';
+import {CurrencyMaskModule} from 'ng2-currency-mask';
+import { CURRENCY_MASK_CONFIG } from 'ng2-currency-mask/src/currency-mask.config';
+import { TextMaskModule } from 'angular2-text-mask';
+import {UiSwitchModule} from 'ng2-ui-switch/dist';
 
 export const rentalCreditApplicationRoutes: Routes = [
   {
@@ -24,8 +28,14 @@ export const rentalCreditApplicationRoutes: Routes = [
     RouterModule.forChild(rentalCreditApplicationRoutes),
     SharedModule,
     FormsModule,
+    TextMaskModule,
     ReactiveFormsModule,
-    FormWizardModule
+    FormWizardModule,
+    UiSwitchModule,
+    CurrencyMaskModule
+  ],
+  providers: [
+    //{ provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
   ],
   declarations: [RentalCreditApplicationComponent]
 })

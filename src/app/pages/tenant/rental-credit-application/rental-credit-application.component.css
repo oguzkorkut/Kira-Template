@@ -9,6 +9,10 @@
     padding-left: 15px !important;
 }
 
+.modal-body .slimScrollDiv {
+    height: 350px !important;
+}
+
 #msform ul li,
 #msform li.active {
     border-bottom: 1 !important;
