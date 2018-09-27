@@ -1,6 +1,21 @@
+.card,
+.card-footer,
+.card-header {
+    background-color: #dedede !important;
+}
+
+.card-header {
+    width: 99% !important;
+    padding-left: 15px !important;
+}
+
 #msform ul li,
 #msform li.active {
-    border-bottom: 0 !important;
+    border-bottom: 1 !important;
+}
+
+.wizard-fielset {
+    padding-bottom: 30px !important;
 }
 
 #msform .nav-item {
@@ -9,7 +24,12 @@
 }
 
 #msform .nav-item>a {
-    font-size: 9px;
+    font-size: 15px !important;
+    font-weight: 100;
+}
+
+#msform .nav-item>i {
+    font-size: 15px !important;
     font-weight: 100;
 }
 
@@ -20,14 +40,14 @@
 }
 
 #msform {
-    width: 400px;
+    width: auto;
     margin: 50px auto;
     text-align: center;
     position: relative;
 }
 
 #msform fieldset {
-    background: #fff;
+    background: #f1f1f1;
     border: 0 none;
     border-radius: 7px 7px 0 0;
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.1);

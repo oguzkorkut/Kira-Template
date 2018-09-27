@@ -4,7 +4,7 @@
         <!-- Form wizard with validation card start -->
         <div class="card">
             <div class="card-header">
-                <h5>Başvuru Adımları</h5>
+                <h4 style="font-weight: bold;">Başvuru Adımları</h4>
                 <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
             </div>
             <div class="card-block">
@@ -16,7 +16,7 @@
                                     <div id="progressbar">
                                         <form-wizard (onStepChanged)="onStepChanged($event)">
                                             <wizard-step [title]="'Kişi Bilgileri'" (onNext)="onStep1Next($event)">
-                                                <fieldset>
+                                                <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Kişi Bilgileri</h2>
                                                     <h3 class="fs-subtitle">Aşağıdak Bilgileri Doldurunuz</h3>
@@ -32,7 +32,7 @@
                                             </wizard-step>
 
                                             <wizard-step [title]="'Kredi Talebi'" [showNext]="step2.showNext" [showPrev]="step2.showPrev" (onNext)="onStep2Next($event)">
-                                                <fieldset>
+                                                <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Kredi Talebi</h2>
                                                     <h3 class="fs-subtitle">Aşağıdak Bilgileri Doldurunuz</h3>
@@ -46,7 +46,7 @@
                                             </wizard-step>
 
                                             <wizard-step [title]="'Sonuç'" [showPrev]="step2.showPrev" (onComplete)="onComplete($event)">
-                                                <fieldset>
+                                                <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Sonuç</h2>
                                                     <h3 class="fs-subtitle">Başvurunuz başarılı bir şekilde alınmıştır!</h3>
