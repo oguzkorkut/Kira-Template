@@ -21,10 +21,14 @@
             "../node_modules/bootstrap/dist/css/bootstrap.min.css",
             "../node_modules/ti-icons/css/themify-icons.css",
             "assets/icon/icofont/css/icofont.min.css",
+            "assets/css/j-pro/j-pro-modern.css",
             "styles.css"
         ],
         "scripts": [
             "../node_modules/jquery/dist/jquery.min.js",
+            "assets/js/jquery-ui/jquery-ui.1.11.4.min.js",
+            "assets/js/j-pro/jquery.j-pro.js",
+            "assets/js/jquery.maskedinput/jquery.maskedinput.min.js",
             "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
             "assets/charts/flot/jquery.flot.js",
             "assets/charts/flot/jquery.flot.categories.js",
