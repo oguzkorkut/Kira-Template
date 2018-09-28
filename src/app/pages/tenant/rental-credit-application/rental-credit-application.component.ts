@@ -1,8 +1,11 @@
+import { isNull } from 'util';
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {transition, trigger, style, animate} from '@angular/animations';
 import swal from 'sweetalert2';
 import { PhoneFilterPipe } from '../../../pipe/phone-filter.pipe';
+import {CustomValidators} from 'ng2-validation';
+import { CONSTANTS } from '../../../service/constants';
 
 declare var jquery:any;
 declare var $ :any;
@@ -29,6 +32,9 @@ declare var $ :any;
 })
 export class RentalCreditApplicationComponent implements OnInit {
 
+  /**
+   * Step1
+   */
   public step1Form: FormGroup;
 
   nextValueSteps1 = "Başvur";
@@ -42,18 +48,28 @@ export class RentalCreditApplicationComponent implements OnInit {
   public identityNumber: string;
   public isRead: boolean = false;
   public contratCheckBox: boolean;
-  submitted: boolean;
+
+  step1Submitted: boolean = false;
+  /**
+   * Step1 end
+   */
 
   public modelWithValue: string
-  public mask: Array<string | RegExp>
+  public mask: Array<string | RegExp>;
 
   isCompleted = false;
 
   constructor(private  phoneFilter: PhoneFilterPipe ) {
-    
-    this.mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
-    const identityNumber = new FormControl('', Validators.required);
+    this.mask = CONSTANTS.phoneMask;
+    
+    this.createStep1FormGroup();
+
+    this.onChanges();
+  }
+
+  createStep1FormGroup(){
+    const identityNumber = new FormControl('', [Validators.required, CustomValidators.gt(10000000000)]);
     const phoneNumber= new FormControl('', Validators.required);
     const contratCheckBox = new FormControl('', [Validators.required]);
 
@@ -62,21 +78,27 @@ export class RentalCreditApplicationComponent implements OnInit {
       phoneNumber: phoneNumber,
       contratCheckBox: contratCheckBox
     });
-
-    this.onChanges();
   }
 
   ngOnInit() {
 
   }
-
   onChanges(): void {
-    var that  = this; 
+    
+    /**
+     * Step1 onChanges
+     */
     this.step1Form.valueChanges.subscribe(val => {
-      console.log(this.phoneNumber +  val.identityNumber +val.phoneNumber + val.contratCheckBox);
-
-      console.log("Phone:" + this.phoneFilter.transform(val.phoneNumber));
+       if(this.step1Form.valid && this.phoneFilter.transform(val.phoneNumber) != ''){
+          this.step1Submitted = true;
+       } else{
+        this.step1Submitted = false;
+       }
     });
+
+    /**
+     * Step1 onChanges end
+     */
 
     /*
     this.step1Form.get('phoneNumber').valueChanges.subscribe(val => {
@@ -85,19 +107,25 @@ export class RentalCreditApplicationComponent implements OnInit {
     */
   }
 
-  openMyModal(event) {
+  /**
+     * Step1 onChanges
+     */
+  openContractText(event) {
     document.querySelector('#' + event).classList.add('md-show');
   }
 
-  closeMyModal(event, read:boolean) {
+  closeContractText(event, read:boolean) {
     ((event.target.parentElement.parentElement).parentElement).classList.remove('md-show');
     if(read && !this.isRead){
       this.isRead = read;
     }
   }
 
+   /**
+     * Step1 onChanges end
+     */
+
   onSubmit() {
-    this.submitted = true;
     console.log(this.step1Form);
   }
 

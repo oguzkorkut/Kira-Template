@@ -46,8 +46,7 @@ export const rentalCreditApplicationRoutes: Routes = [
       RentalCreditApplicationComponent,
       WizardComponent,
       WizardStepComponent
-      
     ],
-    exports: [ PhoneFilterPipe ]
+    exports: [ ]
 })
 export class RentalCreditApplicationModule { }

@@ -16,7 +16,7 @@
                                     <div id="progressbar">
                                         <form-wizard (onStepChanged)="onStepChanged($event)">
                                             <!--[isValid]="step1Form.form.valid"-->
-                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="false" [previousValue]="Geri" [nextValue]="nextValueSteps1" (onNext)="onStep1Next($event)">
+                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="step1Submitted" [previousValue]="Geri" [nextValue]="nextValueSteps1" (onNext)="onStep1Next($event)">
                                                 <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Kişi Bilgileri</h2>
@@ -28,7 +28,7 @@
                                                             </div>
                                                             <div class="col-sm-9">
                                                                 <input type="text" formControlName="identityNumber" class="form-control autonumber" name="identityNumber" currencyMask [(ngModel)]="identityNumber" maxlength="11" minlength="11" placeholder="T.C. Kimlik Numarası" [options]="{ prefix: '', thousands: '', decimal: '', align: 'left', allowZero: false }">
-                                                                <div class="messages text-danger error" *ngIf="step1Form.controls.identityNumber.errors?.required">T.C. kimlik numarası giriniz!</div>
+                                                                <div class="messages text-danger error" *ngIf="!step1Form.controls.identityNumber.valid">T.C. kimlik numarası giriniz!</div>
                                                             </div>
                                                         </div>
                                                         <div class="row form-group">
@@ -47,7 +47,7 @@
                                                             </div>
                                                             <div class="col-sm-9" style="font-size: 10px">
                                                                 <div class="alert alert-warning" role="alert">Kişisel verilerin işlenmesi ve Aktarılmasına ilişkin
-                                                                    <a class="btn-info btn-outline-info waves-effect md-trigger" (click)="openMyModal('effect-12')">Aydınlatma Metni</a> 'ni Görüntülemek İçin Tıklayınız.(Onaylanmadan önce görüntülemeniz
+                                                                    <a class="btn-info btn-outline-info waves-effect md-trigger" (click)="openContractText('step1ContractText')">Aydınlatma Metni</a> 'ni Görüntülemek İçin Tıklayınız.(Onaylanmadan önce görüntülemeniz
                                                                     gerekmektedir.)
                                                                 </div>
                                                             </div>
@@ -103,7 +103,7 @@
             </div>
         </div>
 
-        <app-modal-animation [modalID]="'effect-12'" [modalClass]="'md-effect-12'">
+        <app-modal-animation [modalID]="'step1ContractText'" [modalClass]="'step1ContractText'">
             <h3>Aydınlatma Metni</h3>
             <div>
                 <p>XXX-XXX-YYY:</p>
@@ -112,9 +112,9 @@
                     <li><strong>ZZZ: </strong> zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</li>
                     <li><strong>TTT:  </strong> tttttttttttttt.</li>
                 </ul>
-                <button (click)="closeMyModal($event,true)" class="btn btn-danger md-close">Okudum</button>
+                <button (click)="closeContractText($event,true)" class="btn btn-danger md-close">Okudum</button>
             </div>
-            <button (click)="closeMyModal($event,false)" aria-label="Close" class="md-close-btn"><i class="icofont icofont-ui-close"></i></button>
+            <button (click)="closeContractText($event,false)" aria-label="Close" class="md-close-btn"><i class="icofont icofont-ui-close"></i></button>
         </app-modal-animation>
 
     </div>
