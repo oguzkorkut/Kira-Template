@@ -4,5 +4,6 @@
 export const CONSTANTS: any = {
     server: 'http://localhost:8060/kira',
     clientId: 'kira-service-manager',
-    secret: 'secret'
+    secret: 'secret',
+    phoneMask: ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
 };
