@@ -6,15 +6,36 @@ import swal from 'sweetalert2';
 import { PhoneFilterPipe } from '../../../pipe/phone-filter.pipe';
 import {CustomValidators} from 'ng2-validation';
 import { CONSTANTS } from '../../../service/constants';
+import {NgbCalendar, NgbDateParserFormatter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
+ 
+
+const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
+  one && two && two.year === one.year && two.month === one.month && two.day === one.day;
+
+const before = (one: NgbDateStruct, two: NgbDateStruct) =>
+  !one || !two ? false : one.year === two.year ? one.month === two.month ? one.day === two.day
+    ? false : one.day < two.day : one.month < two.month : one.year < two.year;
+
+const after = (one: NgbDateStruct, two: NgbDateStruct) =>
+  !one || !two ? false : one.year === two.year ? one.month === two.month ? one.day === two.day
+    ? false : one.day > two.day : one.month > two.month : one.year > two.year;
+
+import '../../../../../node_modules/jquery/dist/jquery.js';
+import '../../../../assets/js/j-pro/jquery.j-pro.js';
+import '../../../../assets/js/j-pro/jquery-ui.min.js';
+import '../../../../assets/js/jquery-ui/jquery-ui.min.js';
+import '../../../../assets/js/jquery.maskedinput/jquery.maskedinput.min.js';
+ 
 declare var jquery:any;
-declare var $ :any;
+declare var $:any;
 
 @Component({
   selector: 'app-rental-credit-application',
   templateUrl: './rental-credit-application.component.html',
   styleUrls: [
-    './rental-credit-application.component.css'
+    './rental-credit-application.component.css',
+    '../../../../assets/css/j-pro/j-pro-modern.css'
   ],
   encapsulation: ViewEncapsulation.None,
   animations: [
@@ -66,6 +87,7 @@ export class RentalCreditApplicationComponent implements OnInit {
     this.createStep1FormGroup();
 
     this.onChanges();
+
   }
 
   createStep1FormGroup(){
@@ -81,7 +103,7 @@ export class RentalCreditApplicationComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
   }
   onChanges(): void {
     
@@ -157,4 +179,128 @@ export class RentalCreditApplicationComponent implements OnInit {
   step3: any = {
     showSecret: false
   };
+
+
+  jproStep2Form(){
+ 
+      // Phone masking
+      $("#phone").mask("(999) 999-9999", { placeholder: "x" });
+  
+      /***************************************/
+      /* Datepicker */
+      /***************************************/
+      // Start date
+      function dateFrom(date_from, date_to) {
+          $(date_from).datepicker({
+              dateFormat: "mm/dd/yy",
+              prevText: '<i class="fa fa-caret-left"></i>',
+              nextText: '<i class="fa fa-caret-right"></i>',
+              onClose: function(selectedDate) {
+                  $(date_to).datepicker("option", "minDate", selectedDate);
+              }
+          });
+      }
+  
+      // Finish date
+      function dateTo(date_from, date_to) {
+          $(date_to).datepicker({
+              dateFormat: "mm/dd/yy",
+              prevText: '<i class="fa fa-caret-left"></i>',
+              nextText: '<i class="fa fa-caret-right"></i>',
+              onClose: function(selectedDate) {
+                  $(date_from).datepicker("option", "maxDate", selectedDate);
+              }
+          });
+      }
+  
+      // Destroy date
+      function destroyDate(date) {
+          $(date).datepicker("destroy");
+      }
+  
+      // Initialize date range
+      dateFrom("#date_from", "#date_to");
+      dateTo("#date_from", "#date_to");
+      /***************************************/
+      /* end datepicker */
+      /***************************************/
+  
+      // Validation
+      $("#j-pro").justFormsPro({
+          rules: {
+              name: {
+                  required: true
+              },
+              email: {
+                  required: true,
+                  email: true
+              },
+              phone: {
+                  required: true
+              },
+              adults: {
+                  required: true,
+                  integer: true,
+                  minvalue: 0
+              },
+              children: {
+                  required: true,
+                  integer: true,
+                  minvalue: 0
+              },
+              date_from: {
+                  required: true
+              },
+              date_to: {
+                  required: true
+              },
+              message: {
+                  required: true
+              }
+          },
+          messages: {
+              name: {
+                  required: "Add your name"
+              },
+              email: {
+                  required: "Add your email",
+                  email: "Incorrect email format"
+              },
+              phone: {
+                  required: "Add your phone"
+              },
+              adults: {
+                  required: "Field is required",
+                  integer: "Only integer allowed",
+                  minvalue: "Value not less than 0"
+              },
+              children: {
+                  required: "Field is required",
+                  integer: "Only integer allowed",
+                  minvalue: "Value not less than 0"
+              },
+              date_from: {
+                  required: "Select check-in date"
+              },
+              date_to: {
+                  required: "Select check-out date"
+              },
+              message: {
+                  required: "Enter your message"
+              }
+          },
+          afterSubmitHandler: function() {
+              // Destroy date range
+              destroyDate("#date_from");
+              destroyDate("#date_to");
+  
+              // Initialize date range
+              dateFrom("#date_from", "#date_to");
+              dateTo("#date_from", "#date_to");
+  
+              return true;
+          }
+      });
+  
+  }
 }

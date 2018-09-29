@@ -12,6 +12,7 @@ import {UiSwitchModule} from 'ng2-ui-switch/dist';
 import { WizardComponent } from '../../wizard/WizardComponent';
 import { WizardStepComponent } from '../../wizard/wizard-step.component';
 import { PhoneFilterPipe } from '../../../pipe/phone-filter.pipe';
+import {DatepickerModule} from 'angular2-material-datepicker';
 
 export const rentalCreditApplicationRoutes: Routes = [
   {
@@ -35,7 +36,8 @@ export const rentalCreditApplicationRoutes: Routes = [
     ReactiveFormsModule,
     //FormWizardModule,
     UiSwitchModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    DatepickerModule
   ],
   providers: [
     //{ provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }

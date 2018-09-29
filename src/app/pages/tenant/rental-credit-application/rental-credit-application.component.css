@@ -4,6 +4,31 @@
     background-color: #dedede !important;
 }
 */
+.input-control{
+    text-align: left;
+    border: 2px solid rgba(0, 0, 0, .12);
+    height: 48px;
+
+}
+
+.label-control{
+    text-align: left;
+}
+
+.custom-form-control{
+    border: 2px solid rgba(0, 0, 0, .12);
+    height: 48px;
+}
+.form-label-group{
+    text-align: left;
+}
+.j-footer{
+    text-align: right;
+}
+
+.j-wrapper-640{
+    max-width: initial !important;
+}
 
 .card-header {
     width: 99% !important;

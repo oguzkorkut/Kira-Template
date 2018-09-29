@@ -26,8 +26,9 @@
         ],
         "scripts": [
             "../node_modules/jquery/dist/jquery.min.js",
-            "assets/js/jquery-ui/jquery-ui.1.11.4.min.js",
+            "assets/js/jquery-ui/jquery-ui.min.js",
             "assets/js/j-pro/jquery.j-pro.js",
+            "assets/js/j-pro/jquery-ui.min.js",
             "assets/js/jquery.maskedinput/jquery.maskedinput.min.js",
             "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
             "assets/charts/flot/jquery.flot.js",
