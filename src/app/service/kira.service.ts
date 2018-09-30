@@ -46,10 +46,10 @@ export class KiraService {
       .catch(error => this.handleError(error));
   }
 
-  print(numberOfCopies: number, labelQuality: string, rows: Row[]): Promise<ReturnModel> {
+  getCities(): Promise<ReturnModel> {
     this.createHeader();
     return this.http
-      .post(this.serviceUrl + '/file/print?numberOfCopies=' + numberOfCopies + '&labelQuality=' + labelQuality, rows, { headers: this.headers })
+      .get(this.serviceUrl + '/global/getCities', { headers: this.headers })
       .toPromise()
       .then((response) => {
         return response.json() as ReturnModel;
@@ -57,17 +57,10 @@ export class KiraService {
       .catch(error => this.handleError(error));
   }
 
-
-  importFile(fileName, fileToUpload): Promise<ReturnModel> {
-    const url = this.serviceUrl + '/file/upload';
-
-    this.createFileHeader();
-
-    const file: File = fileToUpload;
-    const formData: FormData = new FormData();
-    formData.append('uploadFile', file, file.name);
-
-    return this.http.post(url, formData, { headers: this.fileHeaders })
+  getProfessions(): Promise<ReturnModel> {
+    this.createHeader();
+    return this.http
+      .get(this.serviceUrl + '/global/getProfessions', { headers: this.headers })
       .toPromise()
       .then((response) => {
         return response.json() as ReturnModel;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 declare var $ :any;
 
 @Component({
@@ -12,7 +11,6 @@ declare var $ :any;
 })
 export class PaymentOrderComponent implements OnInit {
 
-    //'../../../../assets/css/j-pro/j-pro-modern.css'
   constructor() { }
 
   ngOnInit() {

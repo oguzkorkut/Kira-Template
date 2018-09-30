@@ -7,7 +7,13 @@ import { PhoneFilterPipe } from '../../../pipe/phone-filter.pipe';
 import {CustomValidators} from 'ng2-validation';
 import { CONSTANTS } from '../../../service/constants';
 import {NgbCalendar, NgbDateParserFormatter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-
+import { Profession } from '../../../entity/profession';
+import { NgForm } from '@angular/forms';
+import { KiraService } from '../../../service/kira.service';
+import { ReturnModel } from '../../../entity/ReturnModel';
+import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
+import { City } from '../../../entity/city';
+import { NotificationsService } from 'angular2-notifications';
  
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
@@ -21,14 +27,6 @@ const after = (one: NgbDateStruct, two: NgbDateStruct) =>
   !one || !two ? false : one.year === two.year ? one.month === two.month ? one.day === two.day
     ? false : one.day > two.day : one.month > two.month : one.year > two.year;
 
-    /*
-import '../../../../../node_modules/jquery/dist/jquery.js';
-import '../../../../assets/js/j-pro/jquery.j-pro.js';
-import '../../../../assets/js/j-pro/jquery-ui.min.js';
-import '../../../../assets/js/jquery-ui/jquery-ui.min.js';
-*/
-//import '../../../../assets/js/jquery.maskedinput/jquery.maskedinput.min.js';
- 
 declare var jquery:any;
 declare var $:any;
 
@@ -53,24 +51,32 @@ declare var $:any;
   ]
 })
 export class RentalCreditApplicationComponent implements OnInit {
-//'../../../../assets/css/j-pro/j-pro-modern.css'
+  nextValueSteps1 = "Başvur";
+  previousValueStep = "Geri";
+  doneValueStep = "Başvuruyu Tamamla";
+
+  cities: City[] = [];
+  professions: Profession[] = [];
+
+  position = 'bottom-right';
+
+  public options = {
+    position : ['bottom', 'right'],
+    timeOut : 3000,
+    lastOnBottom : true
+  };
+
   /**
    * Step1
    */
   public step1Form: FormGroup;
-  public step2Form: FormGroup;
-  
-
-  nextValueSteps1 = "Başvur";
-  previousValueStep = "Geri";
-  doneValueStep = "Başvuruyu Tamamla";
 
   /**
    * Kullanici telefon numarasi
    */
   public phoneNumber: string = '';
   public identityNumber: string;
-  public isRead: boolean = false;
+  public isContractRead: boolean = false;
   public contratCheckBox: boolean;
 
   step1Submitted: boolean = false;
@@ -78,12 +84,23 @@ export class RentalCreditApplicationComponent implements OnInit {
    * Step1 end
    */
 
-  public modelWithValue: string
+   /**
+   * Step2
+   */
+  public step2Form: FormGroup;
+
+  /**
+   * Step2 end
+   */
+
   public mask: Array<string | RegExp>;
 
   isCompleted = false;
 
-  constructor(private  phoneFilter: PhoneFilterPipe ) {
+  constructor(private  phoneFilter: PhoneFilterPipe, 
+              private kiraService: KiraService, 
+              private toastyService: ToastyService, 
+              private notificationsService: NotificationsService) {
 
     this.mask = CONSTANTS.phoneMask;
     
@@ -92,7 +109,6 @@ export class RentalCreditApplicationComponent implements OnInit {
     this.createStep2FormGroup();
 
     this.onChanges();
-
   }
 
   createStep1FormGroup(){
@@ -117,9 +133,11 @@ export class RentalCreditApplicationComponent implements OnInit {
 
   ngOnInit() {
     
+    this.getCities();
+    this.getProfessions();
   }
+
   onChanges(): void {
-    
     /**
      * Step1 onChanges
      */
@@ -142,23 +160,77 @@ export class RentalCreditApplicationComponent implements OnInit {
     */
   }
 
-  /**
-     * Step1 onChanges
-     */
+/**
+ * Step1 onChanges
+ */
   openContractText(event) {
     document.querySelector('#' + event).classList.add('md-show');
   }
 
-  closeContractText(event, read:boolean) {
+  closeContractText(event, isContractRead:boolean) {
     ((event.target.parentElement.parentElement).parentElement).classList.remove('md-show');
-    if(read && !this.isRead){
-      this.isRead = read;
+    if(isContractRead && !this.isContractRead){
+      this.isContractRead = isContractRead;
     }
   }
 
-   /**
-     * Step1 onChanges end
-     */
+/**
+ * Step1 onChanges end
+ */
+
+ /**
+  * Rest Call
+  */
+ getCities(): void {
+
+  this.kiraService.getCities()
+    .then((res: ReturnModel) => {
+      if (res.status) {
+        this.cities = res.result as City[];
+        
+        if(this.cities){
+          this.notificationsService.success('Bilgi', this.cities.length + " kayıt çekildi");
+         // this.openToast('warning', 'Bilgi', res.message);
+        }
+      } else {
+        this.notificationsService.error('Hata', res.message);
+        //this.openToast('error', 'Hata', res.message);
+      }
+    })
+    .catch((res: Response) => {
+      this.notificationsService.error('Hata', res.statusText);
+      //this.openToast('error', 'Hata', res.statusText);
+    }
+  );
+}
+
+getProfessions(): void {
+
+  this.kiraService.getProfessions()
+    .then((res: ReturnModel) => {
+
+      if (res.status) {
+        this.professions = res.result as Profession[];
+
+        if(this.professions){
+          this.notificationsService.success('Bilgi', this.professions.length + " kayıt çekildi");
+         //this.openToast('warning', 'Bilgi', res.message);
+        }
+      } else {
+        this.notificationsService.error('Hata', res.message);
+        //this.openToast('error', 'Hata', res.message);
+      }
+    })
+    .catch((res: Response) => {
+      this.notificationsService.error('Hata', res.statusText);
+      //this.openToast('error', 'Hata', res.statusText);
+    }
+    );
+}
+
+  /**
+   * Rest Call End
+   */
 
   onSubmit() {
     console.log(this.step1Form);
@@ -193,6 +265,51 @@ export class RentalCreditApplicationComponent implements OnInit {
     showSecret: false
   };
 
-
   
+  openToast2(type: string, title: string, message: string) {
+    /**
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+     */
+    let options = this.getToastSettings();
+    this.position = options["position"] ? options["position"] : 'bottom-right';
+    
+    const toastOptions: ToastOptions = {
+      title: title,
+      msg: message,
+      showClose: options["showClose"],
+      timeout: options["timeout"],
+      theme: options["theme"],
+      onAdd: (toast: ToastData) => {
+        /* added */
+      },
+      onRemove: (toast: ToastData) => {
+        /* removed */
+      }
+    };
+
+    switch (type) {
+      case 'default': this.toastyService.default(toastOptions); break;
+      case 'info': this.toastyService.info(toastOptions); break;
+      case 'success': this.toastyService.success(toastOptions); break;
+      case 'wait': this.toastyService.wait(toastOptions); break;
+      case 'error': this.toastyService.error(toastOptions); break;
+      case 'warning': this.toastyService.warning(toastOptions); break;
+    }
+  }
+  
+  getToastSettings(){
+    let toastSetting = {
+      title : '',
+      msg:  '',
+      showClose : true,
+      timeout : 5000,
+      theme : 'bootstrap',
+      type : 'wait',
+      position:'center-center',
+      closeOther:true
+    }
+    return toastSetting;
+  }
 }
