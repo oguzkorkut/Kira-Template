@@ -7,110 +7,110 @@
                 <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
             </div>
             <div class="card-block">
-                <div class="j-wrapper j-wrapper-640">
-                    <form action="j-pro/php/action.php" method="post" class="j-pro" id="j-pro" novalidate>
-                        <div class="j-content">
-                            <!-- start name -->
-                            <div class="j-unit">
-                                <label class="j-label">Your name</label>
-                                <div class="j-input">
-                                    <label class="j-icon-right" for="name">
-                                        <i class="icofont icofont-ui-user"></i>
-                                    </label>
-                                    <input type="text" id="name" name="name">
+                    <div class="j-wrapper j-wrapper-640">
+                        <form action="j-pro/php/action.php" method="post" class="j-pro" id="j-pro" novalidate>
+                            <div class="j-content">
+                                <!-- start name -->
+                                <div class="j-unit">
+                                    <label class="j-label">Your name</label>
+                                    <div class="j-input">
+                                        <label class="j-icon-right" for="name">
+                                            <i class="icofont icofont-ui-user"></i>
+                                        </label>
+                                        <input type="text" id="name" name="name">
+                                    </div>
                                 </div>
+                                <!-- end name -->
+                                <!-- start email phone -->
+                                <div class="j-row">
+                                    <div class="j-span6 j-unit">
+                                        <label class="j-label">Your email</label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="email">
+                                                <i class="icofont icofont-envelope"></i>
+                                            </label>
+                                            <input type="email" id="email" name="email">
+                                        </div>
+                                    </div>
+                                    <div class="j-span6 j-unit">
+                                        <label class="j-label">Phone/Mobile</label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="phone">
+                                                <i class="icofont icofont-phone"></i>
+                                            </label>
+                                            <input type="text" id="phone" name="phone">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end email phone -->
+                                <div class="j-divider j-gap-bottom-25"></div>
+                                <!-- start guests -->
+                                <div class="j-row">
+                                    <div class="j-span6 j-unit">
+                                        <label class="j-label">Adult guests</label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="adults">
+                                                <i class="icofont icofont-waiter"></i>
+                                            </label>
+                                            <input type="text" id="adults" name="adults">
+                                            <span class="j-tooltip j-tooltip-right-top">Number of adult guests</span>
+                                        </div>
+                                    </div>
+                                    <div class="j-span6 j-unit">
+                                        <label class="j-label">Children guests</label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="children">
+                                                <i class="icofont icofont-woman-in-glasses"></i>
+                                            </label>
+                                            <input type="text" id="children" name="children">
+                                            <span class="j-tooltip j-tooltip-right-top">Number of children</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end guests -->
+                                <!-- start date -->
+                                <div class="j-row">
+                                    <div class="j-span6 j-unit">
+                                        <label class="j-label">Check-in date</label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="date_from">
+                                                <i class="icofont icofont-ui-calendar"></i>
+                                            </label>
+                                            <input type="text" id="date_from" name="date_from" readonly="">
+                                        </div>
+                                    </div>
+                                    <div class="j-span6 j-unit">
+                                        <label class="j-label">Check-out date</label>
+                                        <div class="j-input">
+                                            <label class="j-icon-right" for="date_to">
+                                                <i class="icofont icofont-ui-calendar"></i>
+                                            </label>
+                                            <input type="text" id="date_to" name="date_to" readonly="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end date -->
+                                <div class="j-divider j-gap-bottom-25"></div>
+                                <!-- start message -->
+                                <div class="j-unit">
+                                    <label class="j-label">Comments/Message</label>
+                                    <div class="j-input">
+                                        <textarea spellcheck="false" name="message"></textarea>
+                                    </div>
+                                </div>
+                                <!-- end message -->
+                                <!-- start response from server -->
+                                <div class="j-response"></div>
+                                <!-- end response from server -->
                             </div>
-                            <!-- end name -->
-                            <!-- start email phone -->
-                            <div class="j-row">
-                                <div class="j-span6 j-unit">
-                                    <label class="j-label">Your email</label>
-                                    <div class="j-input">
-                                        <label class="j-icon-right" for="email">
-                                            <i class="icofont icofont-envelope"></i>
-                                        </label>
-                                        <input type="email" id="email" name="email">
-                                    </div>
-                                </div>
-                                <div class="j-span6 j-unit">
-                                    <label class="j-label">Phone/Mobile</label>
-                                    <div class="j-input">
-                                        <label class="j-icon-right" for="phone">
-                                            <i class="icofont icofont-phone"></i>
-                                        </label>
-                                        <input type="text" id="phone" name="phone">
-                                    </div>
-                                </div>
+                            <!-- end /.content -->
+                            <div class="j-footer">
+                                <button type="submit" class="btn btn-primary">Booking</button>
                             </div>
-                            <!-- end email phone -->
-                            <div class="j-divider j-gap-bottom-25"></div>
-                            <!-- start guests -->
-                            <div class="j-row">
-                                <div class="j-span6 j-unit">
-                                    <label class="j-label">Adult guests</label>
-                                    <div class="j-input">
-                                        <label class="j-icon-right" for="adults">
-                                            <i class="icofont icofont-waiter"></i>
-                                        </label>
-                                        <input type="text" id="adults" name="adults">
-                                        <span class="j-tooltip j-tooltip-right-top">Number of adult guests</span>
-                                    </div>
-                                </div>
-                                <div class="j-span6 j-unit">
-                                    <label class="j-label">Children guests</label>
-                                    <div class="j-input">
-                                        <label class="j-icon-right" for="children">
-                                            <i class="icofont icofont-woman-in-glasses"></i>
-                                        </label>
-                                        <input type="text" id="children" name="children">
-                                        <span class="j-tooltip j-tooltip-right-top">Number of children</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end guests -->
-                            <!-- start date -->
-                            <div class="j-row">
-                                <div class="j-span6 j-unit">
-                                    <label class="j-label">Check-in date</label>
-                                    <div class="j-input">
-                                        <label class="j-icon-right" for="date_from">
-                                            <i class="icofont icofont-ui-calendar"></i>
-                                        </label>
-                                        <input type="text" id="date_from" name="date_from" readonly="">
-                                    </div>
-                                </div>
-                                <div class="j-span6 j-unit">
-                                    <label class="j-label">Check-out date</label>
-                                    <div class="j-input">
-                                        <label class="j-icon-right" for="date_to">
-                                            <i class="icofont icofont-ui-calendar"></i>
-                                        </label>
-                                        <input type="text" id="date_to" name="date_to" readonly="">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end date -->
-                            <div class="j-divider j-gap-bottom-25"></div>
-                            <!-- start message -->
-                            <div class="j-unit">
-                                <label class="j-label">Comments/Message</label>
-                                <div class="j-input">
-                                    <textarea spellcheck="false" name="message"></textarea>
-                                </div>
-                            </div>
-                            <!-- end message -->
-                            <!-- start response from server -->
-                            <div class="j-response"></div>
-                            <!-- end response from server -->
-                        </div>
-                        <!-- end /.content -->
-                        <div class="j-footer">
-                            <button type="button" class="btn btn-primary">Booking</button>
-                        </div>
-                        <!-- end /.footer -->
-                    </form>
+                            <!-- end /.footer -->
+                        </form>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

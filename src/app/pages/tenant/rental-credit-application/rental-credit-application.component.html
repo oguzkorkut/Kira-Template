@@ -16,7 +16,7 @@
                                     <div id="progressbar">
                                         <form-wizard (onStepChanged)="onStepChanged($event)">
                                             <!--[isValid]="step1Form.form.valid"-->
-                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="true" [previousValue]="Geri" [nextValue]="nextValueSteps1" (onNext)="onStep1Next($event)">
+                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="true" [previousValue]="previousValueStep" [nextValue]="nextValueSteps1" (onNext)="onStep1Next($event)">
                                                 <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Kişi Bilgileri</h2>
@@ -77,7 +77,7 @@
 
                                                     <div class="card-block">
                                                         <div class="j-wrapper j-wrapper-640">
-                                                            <form  method="post" class="j-pro" id="j-pro" novalidate>
+                                                            <form [formGroup]="step2Form"  class="j-pro" id="j-pro" novalidate>
                                                                 <!-- start identity-->
                                                                 <div class="j-content">
                                                                         <!-- start header -->
@@ -94,7 +94,7 @@
                                                                                 <label class="j-icon-right" for="email">
                                                                                     <i class="icofont icofont-ui-user"></i>
                                                                                 </label>
-                                                                                <input type="text" id="userName" name="userName">
+                                                                                <input type="text" id="userName" name="userName" [disabled]="true">
                                                                             </div>
                                                                         </div>
                                                                         <div class="j-span6 j-unit">
@@ -103,7 +103,7 @@
                                                                                 <label class="j-icon-right" for="phone">
                                                                                     <i class="icofont icofont-ui-user"></i>
                                                                                 </label>
-                                                                                <input type="text" id="userLastname" name="userLastname">
+                                                                                <input type="text" id="userLastname" name="userLastname" [disabled]="true">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -115,7 +115,7 @@
                                                                             <label class="j-icon-right" for="identity">
                                                                                 <i class="icofont icofont-barcode"></i>
                                                                             </label>
-                                                                            <input type="text" id="userIdentity" name="userIdentity">
+                                                                            <input type="text" id="userIdentity" name="userIdentity" [disabled]="true">
                                                                         </div>
                                                                     </div>
                                                                     <!-- end number -->
@@ -171,7 +171,7 @@
                                                                             <label class="j-icon-right" for="salary">
                                                                                 <i class="icofont icofont-download-alt"></i>
                                                                             </label>
-                                                                            <input type="text" id="userSalary" name="userSalary">
+                                                                            <input formControlName="userSalary" type="text" id="userSalary" name="userSalary">
                                                                         </div>
                                                                     </div>
                                                                     <!-- end salary -->
@@ -218,7 +218,7 @@
                                                 </fieldset>
                                             </wizard-step>
 
-                                            <wizard-step [title]="'Sonuç'" [showPrev]="step2.showPrev" (onComplete)="onComplete($event)">
+                                            <wizard-step [title]="'Sonuç'" [showPrev]="step2.showPrev"  (onComplete)="onComplete($event)">
                                                 <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Sonuç</h2>
