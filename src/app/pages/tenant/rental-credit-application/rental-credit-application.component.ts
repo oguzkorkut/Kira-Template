@@ -189,7 +189,7 @@ export class RentalCreditApplicationComponent implements OnInit {
         this.cities = res.result as City[];
         
         if(this.cities){
-          this.notificationsService.success('Bilgi', this.cities.length + " kayıt çekildi");
+          this.notificationsService.success('Bilgi', this.cities.length + " il kaydı çekildi.");
          // this.openToast('warning', 'Bilgi', res.message);
         }
       } else {
@@ -213,7 +213,7 @@ getProfessions(): void {
         this.professions = res.result as Profession[];
 
         if(this.professions){
-          this.notificationsService.success('Bilgi', this.professions.length + " kayıt çekildi");
+          this.notificationsService.success('Bilgi', this.professions.length + " meslek kaydı çekildi.");
          //this.openToast('warning', 'Bilgi', res.message);
         }
       } else {
