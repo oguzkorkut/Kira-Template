@@ -166,7 +166,8 @@
                                                                             <label class="j-icon-right" for="salary">
                                                                                 <i class="icofont icofont-download-alt"></i>
                                                                             </label>
-                                                                            <input formControlName="userSalary" type="text" id="userSalary" name="userSalary">
+                                                                            <input type="text" class="autonumber" formControlName="userSalary" id="userSalary" name="userSalary" [(ngModel)]="userSalary" currencyMask [options]="{ prefix: '', decimal: 'true', align: 'left', allowZero: false }">
+                                                                            <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userSalary.valid">Aylık net gelirinizi giriniz!</div>
                                                                         </div>
                                                                     </div>
                                                                     <!-- end salary -->
@@ -190,7 +191,8 @@
                                                                                 <label class="j-icon-right" for="contractAmount">
                                                                                     <i class="icofont icofont icofont-expand-alt"></i>
                                                                                 </label>
-                                                                                <input type="text" id="userContractAmount" name="userContractAmount">
+                                                                                <input type="text" class="autonumber" formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" [(ngModel)]="userContractAmount" currencyMask [options]="{ prefix: '', decimal: 'true', align: 'left', allowZero: false }">
+                                                                                <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractAmount.valid">Kredi tutarını giriniz!</div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="j-span6 j-unit">
@@ -199,7 +201,8 @@
                                                                                 <label class="j-icon-right" for="contractExpiry">
                                                                                     <i class="icofont icofont icofont-expand-alt"></i>
                                                                                 </label>
-                                                                                <input type="text" id="userContractExpiry" name="userContractExpiry">
+                                                                                <input type="text" class="autonumber" formControlName="userContractExpiry" id="userContractExpiry" name="userContractExpiry" [(ngModel)]="userContractExpiry" currencyMask [options]="{ prefix: '', decimal: 'true', align: 'left', allowZero: false }">
+                                                                                <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractExpiry.valid">Kontrat vadesi giriniz!</div>
                                                                             </div>
                                                                         </div>
                                                                     </div>

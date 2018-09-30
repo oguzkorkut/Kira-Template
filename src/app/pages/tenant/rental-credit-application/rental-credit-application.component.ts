@@ -89,6 +89,10 @@ export class RentalCreditApplicationComponent implements OnInit {
    */
   public step2Form: FormGroup;
 
+  public userContractAmount: number;
+  public userContractExpiry: number;
+  public userSalary: number;
+
   /**
    * Step2 end
    */
@@ -125,9 +129,13 @@ export class RentalCreditApplicationComponent implements OnInit {
 
   createStep2FormGroup(){
     const userSalary= new FormControl('', Validators.required);
+    const userContractExpiry= new FormControl('', Validators.required);
+    const userContractAmount= new FormControl('', Validators.required);
 
     this.step2Form = new FormGroup({
-      userSalary: userSalary
+      userSalary: userSalary,
+      userContractExpiry: userContractExpiry,
+      userContractAmount: userContractAmount
     });
   }
 
