@@ -16,6 +16,7 @@ import {DatepickerModule} from 'angular2-material-datepicker';
 import {ToastyModule} from 'ng2-toasty';
 import { KiraService } from '../../../service/kira.service';
 import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications';
+import { LoadingModule } from 'ngx-loading';
 
 export const rentalCreditApplicationRoutes: Routes = [
   {
@@ -43,6 +44,7 @@ export const rentalCreditApplicationRoutes: Routes = [
     DatepickerModule,
     ToastyModule.forRoot(),
     SimpleNotificationsModule.forRoot(),
+    LoadingModule
   ],
   providers: [
     //{ provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }

@@ -1,3 +1,4 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop: true}"></ngx-loading>
 <div class="row">
     <div class="col-sm-12">
 
@@ -62,7 +63,6 @@
                                                                 <div class="messages text-danger" *ngIf="!contratCheckBox">Aydınlatma Metni'ni Okuyarak Onaylayınız!</div>
                                                             </div>
                                                         </div>
-                                                        <button (click)="dynamicNext()">ileri</button>
                                                     </form>
 
                                                 </fieldset>

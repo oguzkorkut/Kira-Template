@@ -70,6 +70,7 @@ export class RentalCreditApplicationComponent implements OnInit {
     timeOut : 3000,
     lastOnBottom : true
   };
+  public loading = false;
 
   /**
    * Step1
@@ -271,30 +272,26 @@ getProfessions(): void {
 
   onStep1Next(event: WizardStepComponent) {
     
-    event.isValidNextStep = false;
     console.log('Step1 - Next' + event);
-
-    this.kiraService.controlAppStepByTCAndMobilePhone(this.identityNumber, this.phoneNumber)
+    this.loading = true;
+    this.kiraService.controlAppStepByTCAndMobilePhone(this.identityNumber, this.phoneFilter.transform(this.phoneNumber))
       .then((res: ReturnModel) => {
   
+        this.loading = false;
         if (res.status) {
-          this.professions = res.result as Profession[];
-  
-          if(this.professions){
-            this.notificationsService.success('Bilgi', res.message);
-            event.isValidNextStep = true;
-            this.wizardComponent.dynamicNextStep();
-          }
+          //this.use = res.result as Use[];
+          this.notificationsService.success('Bilgi', res.message);
         } else {
           this.notificationsService.error('Hata', res.message);
+          this.wizardComponent.goToStep(this.wizardComponent.steps[this.wizardComponent.activeStepIndex-1]);
         }
       })
       .catch((res: Response) => {
         this.notificationsService.error('Hata', res.statusText);
+        this.wizardComponent.goToStep(this.wizardComponent.steps[this.wizardComponent.activeStepIndex-1]);
+        this.loading = false;
       }
-  );
-
-
+    );
   }
 
   onStep2Next(event) {
@@ -311,11 +308,6 @@ getProfessions(): void {
 
   onStepChanged(step) {
     console.log('Changed to ' + step.title);
-  }
-
-  dynamicNext(){
-   let ti:string;
-   ti = this.wizardComponent.dynamicNextStep();
   }
 
   step2: any = {

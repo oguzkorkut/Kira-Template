@@ -70,7 +70,7 @@ export class KiraService {
 
   controlAppStepByTCAndMobilePhone(identityNumber: string, phone: string): Promise<ReturnModel> {
     this.createHeader();
-    return this.http.post(this.serviceUrl + '/user/controlAppStepByTCAndMobilePhone/' + identityNumber + '/' +  + phone, {}, { headers: this.headers }).toPromise()
+    return this.http.post(this.serviceUrl + '/user/controlAppStepByTCAndMobilePhone/' + identityNumber + '/' + phone, {}, { headers: this.headers }).toPromise()
                     .then((response) => {
                       return response.json() as ReturnModel;
                     })
