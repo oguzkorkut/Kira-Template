@@ -1,7 +1,7 @@
 import { WizardStepComponent } from './../../wizard/wizard-step.component';
 import { WizardComponent } from './../../wizard/WizardComponent';
 import { isNull } from 'util';
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, ViewChild} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {transition, trigger, style, animate} from '@angular/animations';
 import swal from 'sweetalert2';
@@ -53,6 +53,9 @@ declare var $:any;
   ]
 })
 export class RentalCreditApplicationComponent implements OnInit {
+
+  @ViewChild('wizardComponent') wizardComponent: WizardComponent;
+
   nextValueSteps1 = "Başvur";
   previousValueStep = "Geri";
   doneValueStep = "Başvuruyu Tamamla";
@@ -247,17 +250,14 @@ getProfessions(): void {
 
         if(this.professions){
           this.notificationsService.success('Bilgi', this.professions.length + " meslek kaydı çekildi.");
-         //this.openToast('warning', 'Bilgi', res.message);
         }
       } else {
         this.notificationsService.error('Hata', res.message);
-        //this.openToast('error', 'Hata', res.message);
       }
     })
     .catch((res: Response) => {
-      this.notificationsService.error('Hata', res.statusText);
-      //this.openToast('error', 'Hata', res.statusText);
-    }
+        this.notificationsService.error('Hata', res.statusText);
+      }
     );
 }
 
@@ -270,8 +270,31 @@ getProfessions(): void {
   }
 
   onStep1Next(event: WizardStepComponent) {
-    event.isValidNextStep = true;
+    
+    event.isValidNextStep = false;
     console.log('Step1 - Next' + event);
+
+    this.kiraService.controlAppStepByTCAndMobilePhone(this.identityNumber, this.phoneNumber)
+      .then((res: ReturnModel) => {
+  
+        if (res.status) {
+          this.professions = res.result as Profession[];
+  
+          if(this.professions){
+            this.notificationsService.success('Bilgi', res.message);
+            event.isValidNextStep = true;
+            this.wizardComponent.dynamicNextStep();
+          }
+        } else {
+          this.notificationsService.error('Hata', res.message);
+        }
+      })
+      .catch((res: Response) => {
+        this.notificationsService.error('Hata', res.statusText);
+      }
+  );
+
+
   }
 
   onStep2Next(event) {
@@ -288,6 +311,11 @@ getProfessions(): void {
 
   onStepChanged(step) {
     console.log('Changed to ' + step.title);
+  }
+
+  dynamicNext(){
+   let ti:string;
+   ti = this.wizardComponent.dynamicNextStep();
   }
 
   step2: any = {

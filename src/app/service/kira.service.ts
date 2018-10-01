@@ -68,6 +68,15 @@ export class KiraService {
       .catch(error => this.handleError(error));
   }
 
+  controlAppStepByTCAndMobilePhone(identityNumber: string, phone: string): Promise<ReturnModel> {
+    this.createHeader();
+    return this.http.post(this.serviceUrl + '/user/controlAppStepByTCAndMobilePhone/' + identityNumber + '/' +  + phone, {}, { headers: this.headers }).toPromise()
+                    .then((response) => {
+                      return response.json() as ReturnModel;
+                    })
+                    .catch(error => this.handleError(error));
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     if (error.status === 401) {

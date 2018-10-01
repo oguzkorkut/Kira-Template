@@ -14,7 +14,7 @@
                             <div class="multi-step-sign-up">
                                 <div id="msform">
                                     <div id="progressbar">
-                                        <form-wizard (onStepChanged)="onStepChanged($event)">
+                                        <form-wizard (onStepChanged)="onStepChanged($event)" #wizardComponent>
                                             <!--[isValid]="step1Form.form.valid"-->
                                             <wizard-step [title]="'Kişi Bilgileri'" [isValid]="step1Submitted" [previousValue]="previousValueStep" [nextValue]="nextValueSteps1" (onNext)="onStep1Next( $event)">
                                                 <fieldset class="wizard-fielset">
@@ -62,7 +62,7 @@
                                                                 <div class="messages text-danger" *ngIf="!contratCheckBox">Aydınlatma Metni'ni Okuyarak Onaylayınız!</div>
                                                             </div>
                                                         </div>
-
+                                                        <button (click)="dynamicNext()">ileri</button>
                                                     </form>
 
                                                 </fieldset>

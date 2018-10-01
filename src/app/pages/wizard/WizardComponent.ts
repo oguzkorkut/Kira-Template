@@ -128,4 +128,9 @@ export class WizardComponent implements AfterContentInit {
     this._isCompleted = true;
   }
 
+  get dynamicNextStep(): any {
+    this.next();
+    return this.activeStep.title;
+  }
+
 }
