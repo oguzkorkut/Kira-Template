@@ -144,8 +144,8 @@ export class RentalCreditApplicationComponent implements OnInit {
     const userSalary= new FormControl('', Validators.required);
     const userContractExpiry= new FormControl('', Validators.required);
     const userContractAmount= new FormControl('', Validators.required);
-    const userCountry= new FormControl('', Validators.required);
-    const userProfession= new FormControl('', Validators.required);
+    const userCountry= new FormControl('-1', Validators.required);
+    const userProfession= new FormControl('-1', Validators.required);
 
     this.step2Form = new FormGroup({
       userSalary: userSalary,
