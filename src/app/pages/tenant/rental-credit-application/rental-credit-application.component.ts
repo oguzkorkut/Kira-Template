@@ -100,9 +100,9 @@ export class RentalCreditApplicationComponent implements OnInit {
 
   public userCountry: string;
   public userProfession: string;
-  public userContractAmount: string;
-  public userContractExpiry: string;
-  public userSalary: string;
+  public userContractAmount: number;
+  public userContractExpiry: number;
+  public userSalary: number;
 
   step2Submitted: boolean = false;
 
@@ -143,9 +143,9 @@ export class RentalCreditApplicationComponent implements OnInit {
   }
 
   createStep2FormGroup(){
-    const userSalary= new FormControl('', [Validators.required, CustomValidators.gt(0)]);
-    const userContractExpiry= new FormControl('', [Validators.required, CustomValidators.gt(0)]);
-    const userContractAmount= new FormControl('', [Validators.required, CustomValidators.gt(0)]);
+    const userSalary= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
+    const userContractExpiry= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
+    const userContractAmount= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
     const userCountry= new FormControl('', Validators.required);
     const userProfession= new FormControl('', Validators.required);
 

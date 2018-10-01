@@ -127,7 +127,7 @@
                                                                     <label class="col-form-label">Aylık Net Gelir(TL)</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-download-alt"></i></span> 
-                                                                        <input type="text" formControlName="userSalary" id="userSalary" name="userSalary" [(ngModel)]="userSalary" 
+                                                                        <input type="number" formControlName="userSalary" id="userSalary" name="userSalary" [(ngModel)]="userSalary" 
                                                                             class="form-control autonumber" style="width: 100%;">
                                                                     </div>
                                                                     <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userSalary.valid ">Aylık net gelirinizi giriniz!</div>
@@ -140,7 +140,7 @@
                                                                     <label class="col-form-label">Kontrat Tutarı</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
-                                                                        <input type="text" formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" [(ngModel)]="userContractAmount" 
+                                                                        <input type="number" formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" [(ngModel)]="userContractAmount" 
                                                                              class="form-control autonumber">
                                                                     </div>
                                                                     <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractAmount.valid">Kredi tutarını giriniz!</div>
@@ -149,7 +149,7 @@
                                                                     <label class="col-form-label">Kontrat Vadesi(Ay)</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
-                                                                        <input type="text" formControlName="userContractExpiry"  id="userContractExpiry" name="userContractExpiry" [(ngModel)]="userContractExpiry"
+                                                                        <input type="number" formControlName="userContractExpiry"  id="userContractExpiry" name="userContractExpiry" [(ngModel)]="userContractExpiry"
                                                                            class="form-control autonumber">
                                                                     </div>
                                                                     <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractExpiry.valid">Kontrat vadesi giriniz!</div>
