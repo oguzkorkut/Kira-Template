@@ -21,7 +21,6 @@
             "../node_modules/bootstrap/dist/css/bootstrap.min.css",
             "../node_modules/ti-icons/css/themify-icons.css",
             "assets/icon/icofont/css/icofont.min.css",
-            "assets/css/j-pro/j-pro-modern.css",
             "styles.css"
         ],
         "scripts": [

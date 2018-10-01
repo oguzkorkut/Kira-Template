@@ -104,6 +104,8 @@ export class RentalCreditApplicationComponent implements OnInit {
   public userContractExpiry: number;
   public userSalary: number;
 
+  step2Submitted: boolean = false;
+
   /**
    * Step2 end
    */
@@ -144,8 +146,8 @@ export class RentalCreditApplicationComponent implements OnInit {
     const userSalary= new FormControl('', Validators.required);
     const userContractExpiry= new FormControl('', Validators.required);
     const userContractAmount= new FormControl('', Validators.required);
-    const userCountry= new FormControl('-1', Validators.required);
-    const userProfession= new FormControl('-1', Validators.required);
+    const userCountry= new FormControl('', Validators.required);
+    const userProfession= new FormControl('', Validators.required);
 
     this.step2Form = new FormGroup({
       userSalary: userSalary,
@@ -188,7 +190,7 @@ export class RentalCreditApplicationComponent implements OnInit {
    * Step2 onChanges
    */
 
-    this.step1Form.valueChanges.subscribe(val => {
+    this.step2Form.valueChanges.subscribe(val => {
       if(this.step2Form.valid){
       } else{
       }

@@ -16,8 +16,8 @@
                                 <div id="msform">
                                     <div id="progressbar">
                                         <form-wizard (onStepChanged)="onStepChanged($event)" #wizardComponent>
-                                            <!--[isValid]="step1Form.form.valid"-->
-                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="step1Submitted" [previousValue]="previousValueStep" [nextValue]="nextValueSteps1" (onNext)="onStep1Next( $event)">
+                                            <!--[isValid]="step1Submitted"-->
+                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="true" [previousValue]="previousValueStep" [nextValue]="nextValueSteps1" (onNext)="onStep1Next( $event)">
                                                 <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Kişi Bilgileri</h2>
@@ -75,149 +75,88 @@
                                                     <h2 class="fs-title">Kredi Talebi</h2>
                                                     <h3 class="fs-subtitle">Aşağıdak Bilgileri Doldurunuz</h3>
 
-                                                    <div class="card-block">
-                                                        <div class="j-wrapper j-wrapper-640">
-                                                            <form [formGroup]="step2Form" class="j-pro" id="j-pro" novalidate>
-                                                                <!-- start identity-->
-                                                                <div class="j-content">
-                                                                    <!-- start header -->
-                                                                    <div class="j-unit">
-                                                                        <label style="font-family: bold; font-size: 20px">KİMLİK BİLGİLERİ</label>
+                                                    <app-card [title]="'Input Grid'">
+                                                        <h4 class="sub-title" style="font-family: bold; font-size: 20px">KİMLİK BİLGİLERİ</h4>
+                                                        <form [formGroup]="step2Form">
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6 input-control-label"  >
+                                                                    <label class="col-form-label">Adı</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                                        <input type="text" id="userName" name="userName" [(ngModel)]="user.firstname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control" placeholder="Adı">
                                                                     </div>
-                                                                    <!-- end header -->
-                                                                    <div class="j-divider j-gap-bottom-25"></div>
-                                                                    <!-- start name lastname -->
-                                                                    <div class="j-row">
-                                                                        <div class="j-span6 j-unit">
-                                                                            <label class="j-label">Adı</label>
-                                                                            <div class="j-input">
-                                                                                <label class="j-icon-right" for="email">
-                                                                                    <i class="icofont icofont-ui-user"></i>
-                                                                                </label>
-                                                                                <input type="text" id="userName" name="userName" [(ngModel)]="user.firstname" [ngModelOptions]="{standalone: true}" [disabled]=" true">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="j-span6 j-unit">
-                                                                            <label class="j-label">Soyadı</label>
-                                                                            <div class="j-input">
-                                                                                <label class="j-icon-right" for="phone">
-                                                                                    <i class="icofont icofont-ui-user"></i>
-                                                                                </label>
-                                                                                <input type="text" id="userLastname" name="userLastname" [(ngModel)]="user.surname" [ngModelOptions]="{standalone: true}" [disabled]="true">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- end name lastname -->
-                                                                    <!-- start number -->
-                                                                    <div class="j-unit">
-                                                                        <label class="j-label">T.C. Kimlik Numarası</label>
-                                                                        <div class="j-input">
-                                                                            <label class="j-icon-right" for="identity">
-                                                                                <i class="icofont icofont-barcode"></i>
-                                                                            </label>
-                                                                            <input type="text" id="userIdentity" name="userIdentity" [(ngModel)]="user.tckn" [ngModelOptions]="{standalone: true}" [disabled]=" true ">
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- end number -->
                                                                 </div>
-                                                                <!-- end identity-->
-
-                                                                <!-- start personel-->
-                                                                <div class="j-content ">
-                                                                    <!-- start header -->
-                                                                    <div class="j-unit ">
-                                                                        <label style="font-family: bold; font-size: 20px ">KİŞİSEL BİLGİLERİ</label>
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <label class="col-form-label">Soyadı</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                                        <input type="text" id="userLastname" name="userLastname" [(ngModel)]="user.surname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control" placeholder="Adı">
                                                                     </div>
-                                                                    <!-- end header -->
-                                                                    <div class="j-divider j-gap-bottom-25 "></div>
-                                                                    <!-- start state of education, job -->
-                                                                    <div class="j-row ">
-                                                                        <div class="j-span6 j-unit ">
-                                                                            <label class="j-label ">Öğrenim Durumu</label>
-                                                                            <div class="j-input ">
-                                                                                <label class="j-input j-select">
-                                                                                    <select name="userCountry" 
-                                                                                        formControlName="userCountry">
-                                                                                        <option value="-1" selected>Seçiniz</option>
-                                                                                        <option *ngFor="let city of cities" [value]="city.cityCode">{{city.cityName}}</option>
-                                                                                       <!-- <option value="Austria ">Austria</option>-->
-                                                                                    </select>
-                                                                                    <i></i>
-                                                                                </label>
-                                                                                <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userCountry.valid">İl seçiniz!</div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="j-span6 j-unit">
-                                                                            <label class="j-label">Meslek</label>
-                                                                            <div class="j-input">
-                                                                                <label class="j-input j-select">
-                                                                                    <select name="userProfession"
-                                                                                        formControlName="userProfession">
-                                                                                        <option value="-1 " selected>Seçiniz</option>
-                                                                                        <option *ngFor="let profession of professions" [value]="profession.professionCode">{{profession.professionDesc}}</option>
-                                                                                    </select>
-                                                                                    <i></i>
-                                                                                </label>
-                                                                                <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userProfession.valid">Meslek seçiniz!</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- end state of education, job -->
-                                                                    <!-- start salary -->
-                                                                    <div class="j-unit ">
-                                                                        <label class="j-label ">Aylık Net Gelir(TL)</label>
-                                                                        <div class="j-input ">
-                                                                            <label class="j-icon-right " for="salary ">
-                                                                                <i class="icofont icofont-download-alt "></i>
-                                                                            </label>
-                                                                            <input type="text " class="autonumber " formControlName="userSalary" id="userSalary" name="userSalary" [(ngModel)]="userSalary" currencyMask [options]="{ prefix: '', decimal:
-                                                                                'true', align: 'left', allowZero: false } ">
-                                                                            <div class="messages text-danger error label-control " *ngIf="!step2Form.controls.userSalary.valid ">Aylık net gelirinizi giriniz!</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- end salary -->
                                                                 </div>
-                                                                <!-- end personel-->
-
-                                                                <!-- start contract amount, contract expiry-->
-                                                                <div class="j-content ">
-                                                                    <!-- start header -->
-                                                                    <div class="j-unit ">
-                                                                        <label style="font-family: bold; font-size: 20px">KREDİ BAŞVURU BİLGİLERİ</label>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-12 input-control-label">
+                                                                    <label class="col-form-label">T.C. Kimlik Numarası</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-barcode"></i></span>
+                                                                        <input type="text" id="userIdentity" name="userIdentity" [(ngModel)]="user.tckn" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control" placeholder="T.C. Kimlik Numarası">
                                                                     </div>
-                                                                    <!-- end header -->
-                                                                    <div class="j-divider j-gap-bottom-25"></div>
-
-                                                                    <!-- start amount expiry -->
-                                                                    <div class="j-row ">
-                                                                        <div class="j-span6 j-unit">
-                                                                            <label class="j-label">Kontrat Tutarı</label>
-                                                                            <div class="j-input">
-                                                                                <label class="j-icon-right " for="contractAmount">
-                                                                                    <i class="icofont icofont icofont-expand-alt"></i>
-                                                                                </label>
-                                                                                <input type="text " class="autonumber " formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" [(ngModel)]="userContractAmount" currencyMask [options]="{ prefix: '', decimal: 'true', align: 'left', allowZero: false } ">
-                                                                                <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractAmount.valid">Kredi tutarını giriniz!</div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="j-span6 j-unit">
-                                                                            <label class="j-label">Kontrat Vadesi(Ay)</label>
-                                                                            <div class="j-input">
-                                                                                <label class="j-icon-right " for="contractExpiry">
-                                                                                    <i class="icofont icofont icofont-expand-alt"></i>
-                                                                                </label>
-                                                                                <input type="text " class="autonumber" formControlName="userContractExpiry" id="userContractExpiry" name="userContractExpiry" [(ngModel)]="userContractExpiry" currencyMask [options]="{ prefix: '', decimal: 'true', align: 'left', allowZero: false } ">
-                                                                                <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractExpiry.valid">Kontrat vadesi giriniz!</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- end amount expiry -->
                                                                 </div>
-                                                                <!-- end contract amount, contract expiry-->
-                                                            </form>
+                                                            </div>
+                                                            <h4 class="sub-title"  style="font-family: bold; font-size: 20px">KİŞİSEL BİLGİLERİ</h4>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <h4 class="col-form-label">Öğrenim Durumu</h4>
+                                                                    <select name="userCountry" formControlName="userCountry" class="form-control input-control">
+                                                                        <option value="" selected>Seçiniz</option>
+                                                                        <option *ngFor="let city of cities" [value]="city.cityCode">{{city.cityName}}</option>
+                                                                    </select>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userCountry.valid">İl seçiniz!</div>
+                                                                </div>
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <h4 class="col-form-label">Meslek</h4>
+                                                                    <select name="userProfession" formControlName="userProfession"  class="form-control input-control">
+                                                                        <option value="" selected>Seçiniz</option>
+                                                                        <option *ngFor="let profession of professions" [value]="profession.professionCode">{{profession.professionDesc}}</option>
+                                                                    </select>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userProfession.valid">Meslek seçiniz!</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <label class="col-form-label">Aylık Net Gelir(TL)</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-download-alt"></i></span> 
+                                                                        <input type="text" class="autonumber" formControlName="userSalary" id="userSalary" name="userSalary" [(ngModel)]="userSalary" currencyMask [options]="{ prefix: '', decimal:
+                                                                        'true', align: 'left', allowZero: false } " style="width: 100%;">
+                                                                    </div>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userSalary.valid ">Aylık net gelirinizi giriniz!</div>
+                                                                </div>
+                                                            </div>
 
-                                                        </div>
-                                                    </div>
+                                                            <h4 class="sub-title"  style="font-family: bold; font-size: 20px">KREDİ BAŞVURU BİLGİLERİ</h4>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6 input-control-label"  >
+                                                                    <label class="col-form-label">Kontrat Tutarı</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                                                        <input type="text" formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" [(ngModel)]="userContractAmount" currencyMask 
+                                                                            [options]="{ prefix: '', decimal: 'true', align: 'left', allowZero: false } "  class="form-control autonumber" placeholder="Kredi Tutarı">
+                                                                    </div>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractAmount.valid">Kredi tutarını giriniz!</div>
+                                                                </div>
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <label class="col-form-label">Kontrat Vadesi(Ay)</label>
+                                                                    <div class="input-group input-control">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                                                        <input type="text" formControlName="userContractExpiry"  id="userContractExpiry" name="userContractExpiry" [(ngModel)]="userContractExpiry" currencyMask
+                                                                            [options]="{ prefix: '', decimal: 'true', align: 'left', allowZero: false }" class="form-control autonumber" placeholder="Kontrat vadesi">
+                                                                    </div>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractExpiry.valid">Kontrat vadesi giriniz!</div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </app-card>
                                                 </fieldset>
                                             </wizard-step>
 
