@@ -17,6 +17,7 @@ import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
 import { City } from '../../../entity/city';
 import { NotificationsService } from 'angular2-notifications';
 import { User } from '../../../entity/user';
+import { Education } from '../../../entity/education';
  
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
@@ -61,7 +62,8 @@ export class RentalCreditApplicationComponent implements OnInit {
   previousValueStep = "Geri";
   doneValueStep = "Başvuruyu Tamamla";
 
-  cities: City[] = [];
+  //cities: City[] = [];
+  educations: Education[] = [];
   professions: Profession[] = [];
 
   position = 'bottom-right';
@@ -160,7 +162,7 @@ export class RentalCreditApplicationComponent implements OnInit {
 
   ngOnInit() {
     
-    this.getCities();
+    this.getEducations();
     this.getProfessions();
   }
 
@@ -225,15 +227,15 @@ export class RentalCreditApplicationComponent implements OnInit {
  /**
   * Rest Call
   */
- getCities(): void {
+ getEducations(): void {
 
-  this.kiraService.getCities()
+  this.kiraService.getEducations()
     .then((res: ReturnModel) => {
       if (res.status) {
-        this.cities = res.result as City[];
+        this.educations = res.result as Education[];
         
-        if(this.cities){
-          this.notificationsService.success('Bilgi', this.cities.length + " il kaydı çekildi.");
+        if(this.educations){
+          this.notificationsService.success('Bilgi', this.educations.length + " il kaydı çekildi.");
          // this.openToast('warning', 'Bilgi', res.message);
         }
       } else {

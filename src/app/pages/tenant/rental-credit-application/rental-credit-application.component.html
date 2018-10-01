@@ -109,7 +109,7 @@
                                                                     <h4 class="col-form-label">Öğrenim Durumu</h4>
                                                                     <select name="userCountry" formControlName="userCountry" class="form-control input-control">
                                                                         <option value="" selected>Seçiniz</option>
-                                                                        <option *ngFor="let city of cities" [value]="city.cityCode">{{city.cityName}}</option>
+                                                                        <option *ngFor="let education of educations" [value]="education.educationCode">{{education.educationDesc}}</option>
                                                                     </select>
                                                                     <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userCountry.valid">İl seçiniz!</div>
                                                                 </div>
