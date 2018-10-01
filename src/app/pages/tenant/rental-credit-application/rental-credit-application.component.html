@@ -127,8 +127,8 @@
                                                                     <label class="col-form-label">Aylık Net Gelir(TL)</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-download-alt"></i></span> 
-                                                                        <input type="text" class="autonumber" formControlName="userSalary" id="userSalary" name="userSalary" [(ngModel)]="userSalary" currencyMask [options]="{ prefix: '', decimal:
-                                                                        'true', align: 'left', allowZero: false } " style="width: 100%;">
+                                                                        <input type="text" formControlName="userSalary" id="userSalary" name="userSalary" [(ngModel)]="userSalary" 
+                                                                            class="form-control autonumber" style="width: 100%;">
                                                                     </div>
                                                                     <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userSalary.valid ">Aylık net gelirinizi giriniz!</div>
                                                                 </div>
@@ -140,8 +140,8 @@
                                                                     <label class="col-form-label">Kontrat Tutarı</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
-                                                                        <input type="text" formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" [(ngModel)]="userContractAmount" currencyMask 
-                                                                            [options]="{ prefix: '', decimal: 'true', align: 'left', allowZero: false } "  class="form-control autonumber" placeholder="Kredi Tutarı">
+                                                                        <input type="text" formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" [(ngModel)]="userContractAmount" 
+                                                                             class="form-control autonumber">
                                                                     </div>
                                                                     <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractAmount.valid">Kredi tutarını giriniz!</div>
                                                                 </div>
@@ -149,8 +149,8 @@
                                                                     <label class="col-form-label">Kontrat Vadesi(Ay)</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
-                                                                        <input type="text" formControlName="userContractExpiry"  id="userContractExpiry" name="userContractExpiry" [(ngModel)]="userContractExpiry" currencyMask
-                                                                            [options]="{ prefix: '', decimal: 'true', align: 'left', allowZero: false }" class="form-control autonumber" placeholder="Kontrat vadesi">
+                                                                        <input type="text" formControlName="userContractExpiry"  id="userContractExpiry" name="userContractExpiry" [(ngModel)]="userContractExpiry"
+                                                                           class="form-control autonumber">
                                                                     </div>
                                                                     <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractExpiry.valid">Kontrat vadesi giriniz!</div>
                                                                 </div>
