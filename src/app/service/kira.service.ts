@@ -68,6 +68,17 @@ export class KiraService {
       .catch(error => this.handleError(error));
   }
 
+  getEducations(): Promise<ReturnModel> {
+    this.createHeader();
+    return this.http
+      .get(this.serviceUrl + '/global/getEducations', { headers: this.headers })
+      .toPromise()
+      .then((response) => {
+        return response.json() as ReturnModel;
+      })
+      .catch(error => this.handleError(error));
+  }
+
   controlAppStepByTCAndMobilePhone(identityNumber: string, phone: string): Promise<ReturnModel> {
     this.createHeader();
     return this.http.post(this.serviceUrl + '/user/controlAppStepByTCAndMobilePhone/' + identityNumber + '/' + phone, {}, { headers: this.headers }).toPromise()
