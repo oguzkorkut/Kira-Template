@@ -16,7 +16,7 @@
                                     <div id="progressbar">
                                         <form-wizard (onStepChanged)="onStepChanged($event)">
                                             <!--[isValid]="step1Form.form.valid"-->
-                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="true" [previousValue]="previousValueStep" [nextValue]="nextValueSteps1" (onNext)="onStep1Next($event)">
+                                            <wizard-step [title]="'Kişi Bilgileri'" [isValid]="step1Submitted" [previousValue]="previousValueStep" [nextValue]="nextValueSteps1" (onNext)="onStep1Next( $event)">
                                                 <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Kişi Bilgileri</h2>
@@ -77,15 +77,15 @@
 
                                                     <div class="card-block">
                                                         <div class="j-wrapper j-wrapper-640">
-                                                            <form [formGroup]="step2Form"  class="j-pro" id="j-pro" novalidate>
+                                                            <form [formGroup]="step2Form" class="j-pro" id="j-pro" novalidate>
                                                                 <!-- start identity-->
                                                                 <div class="j-content">
-                                                                        <!-- start header -->
+                                                                    <!-- start header -->
                                                                     <div class="j-unit">
                                                                         <label style="font-family: bold; font-size: 20px">KİMLİK BİLGİLERİ</label>
                                                                     </div>
-                                                                        <!-- end header -->
-                                                                        <div class="j-divider j-gap-bottom-25"></div>
+                                                                    <!-- end header -->
+                                                                    <div class="j-divider j-gap-bottom-25"></div>
                                                                     <!-- start name lastname -->
                                                                     <div class="j-row">
                                                                         <div class="j-span6 j-unit">
@@ -120,41 +120,45 @@
                                                                     </div>
                                                                     <!-- end number -->
                                                                 </div>
-                                                                 <!-- end identity-->
+                                                                <!-- end identity-->
 
-                                                                 <!-- start personel-->
+                                                                <!-- start personel-->
                                                                 <div class="j-content">
-                                                                        <!-- start header -->
+                                                                    <!-- start header -->
                                                                     <div class="j-unit">
                                                                         <label style="font-family: bold; font-size: 20px">KİŞİSEL BİLGİLERİ</label>
                                                                     </div>
-                                                                        <!-- end header -->
-                                                                     <div class="j-divider j-gap-bottom-25"></div>
+                                                                    <!-- end header -->
+                                                                    <div class="j-divider j-gap-bottom-25"></div>
                                                                     <!-- start state of education, job -->
                                                                     <div class="j-row">
                                                                         <div class="j-span6 j-unit">
                                                                             <label class="j-label">Öğrenim Durumu</label>
                                                                             <div class="j-input">
                                                                                 <label class="j-input j-select">
-                                                                                    <select name="country" >
+                                                                                    <select name="userCountry" 
+                                                                                        formControlName="userCountry">
                                                                                         <option value="-1" selected>Seçiniz</option>
-                                                                                        <option *ngFor="let city of cities" value="city.cityCode">{{city.cityName}}</option>
+                                                                                        <option *ngFor="let city of cities" [value]="city.cityCode">{{city.cityName}}</option>
                                                                                        <!-- <option value="Austria">Austria</option>-->
                                                                                     </select>
                                                                                     <i></i>
                                                                                 </label>
+                                                                                <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userCountry.valid">İl seçiniz!</div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="j-span6 j-unit">
                                                                             <label class="j-label">Meslek</label>
                                                                             <div class="j-input">
                                                                                 <label class="j-input j-select">
-                                                                                    <select name="country">
+                                                                                    <select name="userProfession"
+                                                                                        formControlName="userProfession">
                                                                                         <option value="-1" selected>Seçiniz</option>
-                                                                                        <option *ngFor="let profession of professions" value="profession.professionCode">{{profession.professionDesc}}</option>
+                                                                                        <option *ngFor="let profession of professions" [value]="profession.professionCode">{{profession.professionDesc}}</option>
                                                                                     </select>
                                                                                     <i></i>
                                                                                 </label>
+                                                                                <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userProfession.valid">Meslek seçiniz!</div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -172,18 +176,18 @@
                                                                     </div>
                                                                     <!-- end salary -->
                                                                 </div>
-                                                                 <!-- end personel-->
+                                                                <!-- end personel-->
 
                                                                 <!-- start contract amount, contract expiry-->
                                                                 <div class="j-content">
-                                                                        <!-- start header -->
+                                                                    <!-- start header -->
                                                                     <div class="j-unit">
                                                                         <label style="font-family: bold; font-size: 20px">KREDİ BAŞVURU BİLGİLERİ</label>
                                                                     </div>
-                                                                        <!-- end header -->
-                                                                     <div class="j-divider j-gap-bottom-25"></div>
+                                                                    <!-- end header -->
+                                                                    <div class="j-divider j-gap-bottom-25"></div>
 
-                                                                     <!-- start amount expiry -->
+                                                                    <!-- start amount expiry -->
                                                                     <div class="j-row">
                                                                         <div class="j-span6 j-unit">
                                                                             <label class="j-label">Kontrat Tutarı</label>
@@ -208,15 +212,15 @@
                                                                     </div>
                                                                     <!-- end amount expiry -->
                                                                 </div>
-                                                                 <!-- end contract amount, contract expiry-->
+                                                                <!-- end contract amount, contract expiry-->
                                                             </form>
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </fieldset>
                                             </wizard-step>
 
-                                            <wizard-step [title]="'Sonuç'" [showPrev]="step2.showPrev"  (onComplete)="onComplete($event)">
+                                            <wizard-step [title]="'Sonuç'" [showPrev]="step2.showPrev" (onComplete)="onComplete($event)">
                                                 <fieldset class="wizard-fielset">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Sonuç</h2>

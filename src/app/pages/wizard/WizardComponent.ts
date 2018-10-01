@@ -78,7 +78,7 @@ export class WizardComponent implements AfterContentInit {
   }
 
   set activeStep(step: WizardStepComponent) {
-    if (step !== this.activeStep && !step.isDisabled) {
+    if (step !== this.activeStep && !step.isDisabled && step.isValidNextStep) {
       this.activeStep.isActive = false;
       step.isActive = true;
       this.onStepChanged.emit(step);
@@ -105,17 +105,19 @@ export class WizardComponent implements AfterContentInit {
 
   public next(): void {
     if (this.hasNextStep) {
-      let nextStep: WizardStepComponent = this.steps[this.activeStepIndex + 1];
-      this.activeStep.onNext.emit();
-      nextStep.isDisabled = false;
-      this.activeStep = nextStep;
+      if(this.steps[this.activeStepIndex].isValidNextStep){
+        let nextStep: WizardStepComponent = this.steps[this.activeStepIndex + 1];
+        this.activeStep.onNext.emit(nextStep);
+        nextStep.isDisabled = false;
+        this.activeStep = nextStep;
+      }
     }
   }
 
   public previous(): void {
     if (this.hasPrevStep) {
       let prevStep: WizardStepComponent = this.steps[this.activeStepIndex - 1];
-      this.activeStep.onPrev.emit();
+      this.activeStep.onPrev.emit(prevStep);
       prevStep.isDisabled = false;
       this.activeStep = prevStep;
     }

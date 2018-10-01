@@ -1,3 +1,5 @@
+import { WizardStepComponent } from './../../wizard/wizard-step.component';
+import { WizardComponent } from './../../wizard/WizardComponent';
 import { isNull } from 'util';
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -89,6 +91,8 @@ export class RentalCreditApplicationComponent implements OnInit {
    */
   public step2Form: FormGroup;
 
+  public userCountry: string;
+  public userProfession: string;
   public userContractAmount: number;
   public userContractExpiry: number;
   public userSalary: number;
@@ -131,11 +135,15 @@ export class RentalCreditApplicationComponent implements OnInit {
     const userSalary= new FormControl('', Validators.required);
     const userContractExpiry= new FormControl('', Validators.required);
     const userContractAmount= new FormControl('', Validators.required);
+    const userCountry= new FormControl('', Validators.required);
+    const userProfession= new FormControl('', Validators.required);
 
     this.step2Form = new FormGroup({
       userSalary: userSalary,
       userContractExpiry: userContractExpiry,
-      userContractAmount: userContractAmount
+      userContractAmount: userContractAmount,
+      userCountry: userCountry,
+      userProfession: userProfession
     });
   }
 
@@ -166,6 +174,23 @@ export class RentalCreditApplicationComponent implements OnInit {
       console.log(val.phoneNumber);
     });
     */
+
+  /**
+   * Step2 onChanges
+   */
+
+    this.step1Form.valueChanges.subscribe(val => {
+      if(this.step2Form.valid){
+      } else{
+      }
+    });
+
+  /**
+   * Step2 onChanges end
+   */
+
+
+
   }
 
 /**
@@ -244,12 +269,13 @@ getProfessions(): void {
     console.log(this.step1Form);
   }
 
-  onStep1Next(event) {
-    console.log('Step1 - Next');
+  onStep1Next(event: WizardStepComponent) {
+    event.isValidNextStep = true;
+    console.log('Step1 - Next' + event);
   }
 
   onStep2Next(event) {
-    console.log('Step2 - Next');
+    console.log('Step2 - Next' + event);
   }
 
   onStep3Next(event) {
