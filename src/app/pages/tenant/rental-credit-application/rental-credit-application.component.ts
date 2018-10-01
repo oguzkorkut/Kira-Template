@@ -16,6 +16,7 @@ import { ReturnModel } from '../../../entity/ReturnModel';
 import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
 import { City } from '../../../entity/city';
 import { NotificationsService } from 'angular2-notifications';
+import { User } from '../../../entity/user';
  
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
@@ -86,6 +87,8 @@ export class RentalCreditApplicationComponent implements OnInit {
   public contratCheckBox: boolean;
 
   step1Submitted: boolean = false;
+
+  user: User;
   /**
    * Step1 end
    */
@@ -113,6 +116,8 @@ export class RentalCreditApplicationComponent implements OnInit {
               private kiraService: KiraService, 
               private toastyService: ToastyService, 
               private notificationsService: NotificationsService) {
+
+    this.user = new User();
 
     this.mask = CONSTANTS.phoneMask;
     
@@ -279,7 +284,8 @@ getProfessions(): void {
   
         this.loading = false;
         if (res.status) {
-          //this.use = res.result as Use[];
+          this.user = res.result as User;
+
           this.notificationsService.success('Bilgi', res.message);
         } else {
           this.notificationsService.error('Hata', res.message);
