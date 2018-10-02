@@ -4,6 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../entity/user';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+import { CONSTANTS } from '../../../service/constants';
+import { PhoneFilterPipe } from '../../../pipe/phone-filter.pipe';
+import { KiraService } from '../../../service/kira.service';
+import { NotificationsService } from 'angular2-notifications';
 
 declare var $: any;
 
@@ -21,6 +25,9 @@ export class PaymentOrderComponent implements OnInit {
         timeOut: 3000,
         lastOnBottom: true
     };
+
+    public mask: Array<string | RegExp>;
+
     public loading = false;
 
     /**
@@ -37,7 +44,12 @@ export class PaymentOrderComponent implements OnInit {
     public communicationPreferenceForm: FormGroup;
     public notificationPreferenceForm: FormGroup;
 
-    constructor() { }
+    constructor(private  phoneFilter: PhoneFilterPipe, 
+                private kiraService: KiraService, 
+                private notificationsService: NotificationsService) { 
+
+        this.mask = CONSTANTS.phoneMask;
+    }
 
     ngOnInit() {
         this.tenant = new User;
@@ -83,7 +95,10 @@ export class PaymentOrderComponent implements OnInit {
 
     createCommunicationPreferenceFormGroup(){
         const paymentOrderMobilePhone= new FormControl('', Validators.required);
-        const paymentOrderEMail= new FormControl('', Validators.required);
+        const paymentOrderEMail= new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]);
+
+            //var emailRegex = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+             //return emailRegex.test(email);
     
         this.communicationPreferenceForm = new FormGroup({
             paymentOrderMobilePhone: paymentOrderMobilePhone,
@@ -103,7 +118,22 @@ export class PaymentOrderComponent implements OnInit {
 
         });
     }
+
+    cancelApplication(){
+
+    }
     
+    approveApplication(){
+        if (this.residenceOwnerForm.valid 
+                && this.paymentPlanForm.valid 
+                && this.communicationPreferenceForm.valid 
+                && this.notificationPreferenceForm.valid) {
+            console.log("valid");
+        } else {
+            console.log("invalid");
+        }
+
+    }
 
     startJQuery() {
 

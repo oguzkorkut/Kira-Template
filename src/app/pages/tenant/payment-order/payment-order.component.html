@@ -54,7 +54,7 @@
                                     <div class="col-sm-12 input-control-label">
                                         <label class="col-form-label">T.C. Kimlik Numarası</label>
                                         <div class="input-group input-group-button">
-                                            <input type="text" class="form-control">
+                                            <input type="number" class="form-control">
                                             <span class="input-group-addon" id="basic-addon10">
                                                 <button class="btn btn-primary"><i class="icofont icofont-user-search"></i>Ara</button>
                                             </span>
@@ -265,9 +265,9 @@
                                         <div class="col-sm-8 input-control-label">
                                             <div class="input-group input-control">
                                                 <span class="input-group-addon"><i class="icofont icofont-stock-mobile"></i></span>
-                                                <input type="tel" formControlName="paymentOrderMobilePhone" id="paymentOrderMobilePhone" name="paymentOrderMobilePhone" class="form-control">
+                                                <input type="text" formControlName="paymentOrderMobilePhone" id="paymentOrderMobilePhone" name="paymentOrderMobilePhone" class="form-control" [textMask]="{mask: mask}">
                                             </div>
-                                            <div class="messages text-danger error label-control" *ngIf="!communicationPreferenceForm.controls.paymentOrderMobilePhone.valid">Cep telefonu giriniz!</div>
+                                            <div class="messages text-danger error label-control" *ngIf="!communicationPreferenceForm.controls.paymentOrderMobilePhone.valid">Cep telefonu numarası giriniz!</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -277,7 +277,7 @@
                                         <div class="col-sm-8 input-control-label">
                                             <div class="input-group input-control">
                                                 <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
-                                                <input type="text" formControlName="paymentOrderEMail" id="paymentOrderEMail" name="paymentOrderEMail" class="form-control">
+                                                <input type="email" formControlName="paymentOrderEMail" id="paymentOrderEMail" name="paymentOrderEMail" class="form-control">
                                             </div>
                                             <div class="messages text-danger error label-control" *ngIf="!communicationPreferenceForm.controls.paymentOrderEMail.valid">E-Posta giriniz!</div>
                                         </div>
@@ -298,8 +298,8 @@
             <div class="card-block">
                 <div class="row">
                     <div class="col-md-12" style="text-align: right">
-                        <button class="btn btn-danger btn-round">Vazgeç</button>
-                        <button class="btn btn-success btn-round">Tamam</button>
+                        <button class="btn btn-danger btn-round" (click)="cancelApplication();">Vazgeç</button>
+                        <button class="btn btn-success btn-round" (click)="approveApplication();">Tamam</button>
                     </div>
                 </div>
             </div>

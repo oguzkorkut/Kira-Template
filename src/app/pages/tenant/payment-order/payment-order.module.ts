@@ -12,6 +12,7 @@ import { UiSwitchModule } from 'ng2-ui-switch';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { DatepickerModule } from 'angular2-material-datepicker';
 import { KiraService } from '../../../service/kira.service';
+import { PhoneFilterPipe } from '../../../pipe/phone-filter.pipe';
 
 export const paymentOrderRoutes: Routes = [
   {
@@ -42,7 +43,8 @@ export const paymentOrderRoutes: Routes = [
   ],
   providers:[
     KiraService,
-    NotificationsService
+    NotificationsService,
+    PhoneFilterPipe
   ],
   declarations: [PaymentOrderComponent]
 }) 
