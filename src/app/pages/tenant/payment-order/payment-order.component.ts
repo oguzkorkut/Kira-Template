@@ -34,10 +34,10 @@ export class PaymentOrderComponent implements OnInit {
 
     public residenceOwnerForm: FormGroup;
     public paymentPlanForm: FormGroup;
-    
-    constructor() { }
+    public communicationPreferenceForm: FormGroup;
+    public notificationPreferenceForm: FormGroup;
 
-    
+    constructor() { }
 
     ngOnInit() {
         this.tenant = new User;
@@ -46,7 +46,11 @@ export class PaymentOrderComponent implements OnInit {
 
         this.createResidenceOwnerFormGroup();
 
-        this.createpaymentPlanFormGroup();
+        this.createPaymentPlanFormGroup();
+
+        this.createCommunicationPreferenceFormGroup();
+
+        this.createNotificationPreferenceFormGroup();
 
         this.startJQuery();
     }
@@ -56,7 +60,7 @@ export class PaymentOrderComponent implements OnInit {
         const paymentOrderTotalAmount= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
         const paymentOrderDepositAmount= new FormControl(0, [Validators.required, CustomValidators.gt(-1)]);
         const paymentOrderCommissionAmount= new FormControl(0, [Validators.required, CustomValidators.gt(-1)]);
-        const paymentOrderFirstInstallmentDate= new FormControl(0, Validators.required);
+        const paymentOrderFirstInstallmentDate= new FormControl('', Validators.required);
 
         this.paymentPlanForm = new FormGroup({
             paymentOrderInstallmentCount: paymentOrderInstallmentCount,
@@ -67,15 +71,39 @@ export class PaymentOrderComponent implements OnInit {
         });
     }
 
-    createpaymentPlanFormGroup(){
+    createPaymentPlanFormGroup(){
         const residenceOwnerBank= new FormControl('', Validators.required);
         const residenceOwnerAccount= new FormControl('', Validators.required);
     
         this.residenceOwnerForm = new FormGroup({
             residenceOwnerBank: residenceOwnerBank,
-            residenceOwnerAccount: residenceOwnerAccount,
+            residenceOwnerAccount: residenceOwnerAccount
         });
     }
+
+    createCommunicationPreferenceFormGroup(){
+        const paymentOrderMobilePhone= new FormControl('', Validators.required);
+        const paymentOrderEMail= new FormControl('', Validators.required);
+    
+        this.communicationPreferenceForm = new FormGroup({
+            paymentOrderMobilePhone: paymentOrderMobilePhone,
+            paymentOrderEMail: paymentOrderEMail
+        });
+    }
+
+
+    createNotificationPreferenceFormGroup(){
+    
+        const firstNotificationPreferences = new FormControl('', [Validators.required]);
+        const lastNotificationPreferences = new FormControl('', [Validators.required]);
+
+        this.notificationPreferenceForm = new FormGroup({
+            firstNotificationPreferences:firstNotificationPreferences,
+            lastNotificationPreferences:lastNotificationPreferences
+
+        });
+    }
+    
 
     startJQuery() {
 
