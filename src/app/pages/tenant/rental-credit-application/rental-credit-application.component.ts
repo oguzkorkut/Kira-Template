@@ -18,6 +18,7 @@ import { City } from '../../../entity/city';
 import { NotificationsService } from 'angular2-notifications';
 import { User } from '../../../entity/user';
 import { Education } from '../../../entity/education';
+import { CreditApplication } from '../../../entity/creditApplication';
  
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
@@ -100,12 +101,13 @@ export class RentalCreditApplicationComponent implements OnInit {
    */
   public step2Form: FormGroup;
 
-  public userCountry: string;
+  /*
+  public userEducation: string;
   public userProfession: string;
   public userContractAmount: number;
   public userContractExpiry: number;
   public userSalary: number;
-
+*/
   step2Submitted: boolean = false;
 
   /**
@@ -148,14 +150,14 @@ export class RentalCreditApplicationComponent implements OnInit {
     const userSalary= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
     const userContractExpiry= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
     const userContractAmount= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
-    const userCountry= new FormControl('', Validators.required);
+    const userEducation= new FormControl('', Validators.required);
     const userProfession= new FormControl('', Validators.required);
 
     this.step2Form = new FormGroup({
       userSalary: userSalary,
       userContractExpiry: userContractExpiry,
       userContractAmount: userContractAmount,
-      userCountry: userCountry,
+      userEducation: userEducation,
       userProfession: userProfession
     });
   }
@@ -193,8 +195,11 @@ export class RentalCreditApplicationComponent implements OnInit {
    */
 
     this.step2Form.valueChanges.subscribe(val => {
+      
       if(this.step2Form.valid){
+        this.step2Submitted = true;
       } else{
+        this.step2Submitted = false;
       }
     });
 
@@ -306,6 +311,46 @@ getProfessions(): void {
 
   onStep2Next(event) {
     console.log('Step2 - Next' + event);
+    let creditApplication: CreditApplication;
+    
+    creditApplication = new CreditApplication;
+
+    creditApplication["identityNumber"] = this.identityNumber;
+    creditApplication["phoneNumber"] = this.phoneNumber;
+    creditApplication["userSalary"] = this.step2Form.controls.userSalary.value;
+    creditApplication["userContractExpiry"] = this.step2Form.controls.userContractExpiry.value;
+    creditApplication["userContractAmount"] = this.step2Form.controls.userContractAmount.value;
+    creditApplication["userEducationCode"] = this.step2Form.controls.userEducation.value;
+    creditApplication["userProfessionCode"] = this.step2Form.controls.userProfession.value;
+
+    //this.loading = true;
+    this.callAppCompletion(creditApplication)
+      .then((res: ReturnModel) => {
+  
+        this.loading = false;
+        if (res.status) {
+        //  this.cApp = res.result as CreditApplication;
+
+          this.notificationsService.success('Bilgi', res.message);
+
+          let result: boolean = this.wizardComponent.dynamicComplete;
+        } else {
+          this.notificationsService.error('Hata', res.message);
+          this.wizardComponent.goToStep(this.wizardComponent.steps[this.wizardComponent.activeStepIndex-1]);
+        }
+      })
+      .catch((res: Response) => {
+        this.notificationsService.error('Hata', res.statusText);
+        this.wizardComponent.goToStep(this.wizardComponent.steps[this.wizardComponent.activeStepIndex-1]);
+        this.loading = false;
+      }
+    );
+   
+  }
+
+  async callAppCompletion(creditApplication: CreditApplication): Promise<ReturnModel>{
+    this.loading = true;
+    return await this.kiraService.applicationCompletion(creditApplication);
   }
 
   onStep3Next(event) {

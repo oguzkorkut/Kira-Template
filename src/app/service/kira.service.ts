@@ -7,6 +7,7 @@ import { Headers, Http, Response } from '@angular/http';
 import { CookieService } from 'ngx-cookie-service';
 import 'rxjs/add/operator/toPromise';
 import { ReturnModel } from '../entity/ReturnModel';
+import { CreditApplication } from '../entity/creditApplication';
 
 
 @Injectable()
@@ -82,6 +83,15 @@ export class KiraService {
   controlAppStepByTCAndMobilePhone(identityNumber: string, phone: string): Promise<ReturnModel> {
     this.createHeader();
     return this.http.post(this.serviceUrl + '/user/controlAppStepByTCAndMobilePhone/' + identityNumber + '/' + phone, {}, { headers: this.headers }).toPromise()
+                    .then((response) => {
+                      return response.json() as ReturnModel;
+                    })
+                    .catch(error => this.handleError(error));
+  }
+
+  applicationCompletion(creditApplication: CreditApplication): Promise<ReturnModel> {
+    this.createHeader();
+    return this.http.post(this.serviceUrl + '/user/applicationCompletion', creditApplication, { headers: this.headers }).toPromise()
                     .then((response) => {
                       return response.json() as ReturnModel;
                     })

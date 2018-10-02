@@ -18,7 +18,7 @@
                                         <form-wizard (onStepChanged)="onStepChanged($event)" #wizardComponent>
                                             <!--[isValid]="step1Submitted"-->
                                             <wizard-step [title]="'Kişi Bilgileri'" [isValid]="step1Submitted" [previousValue]="previousValueStep" [nextValue]="nextValueSteps1" (onNext)="onStep1Next( $event)">
-                                                <fieldset class="wizard-fielset">
+                                                <fieldset class="wizard-fielset input-control-label">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Kişi Bilgileri</h2>
                                                     <h3 class="fs-subtitle">Aşağıdak Bilgileri Doldurunuz</h3>
@@ -69,17 +69,17 @@
 
                                             </wizard-step>
 
-                                            <wizard-step [title]="'Kredi Talebi'" [showNext]="step2.showNext" [showPrev]="step2.showPrev" [previousValue]="previousValueStep" [nextValue]="doneValueStep" (onNext)="onStep2Next($event)">
-                                                <fieldset class="wizard-fielset">
+                                            <wizard-step [title]="'Kredi Talebi'" [showNext]="step2.showNext" [isValid]="step2Submitted" [showPrev]="step2.showPrev" [previousValue]="previousValueStep" [nextValue]="doneValueStep" (onNext)="onStep2Next($event)">
+                                                <fieldset class="wizard-fielset input-control-label">
                                                     <img class="logo" src="assets/images/users_2.png" alt="logo.png">
                                                     <h2 class="fs-title">Kredi Talebi</h2>
                                                     <h3 class="fs-subtitle">Aşağıdak Bilgileri Doldurunuz</h3>
-
-                                                    <app-card [title]="'Input Grid'">
+                                                    <!--<app-card [title]="'Input Grid'">-->
+                                                    <app-card>
                                                         <h4 class="sub-title" style="font-family: bold; font-size: 20px">KİMLİK BİLGİLERİ</h4>
                                                         <form [formGroup]="step2Form">
                                                             <div class="form-group row">
-                                                                <div class="col-sm-6 input-control-label"  >
+                                                                <div class="col-sm-6 input-control-label">
                                                                     <label class="col-form-label">Adı</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
@@ -103,19 +103,19 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <h4 class="sub-title"  style="font-family: bold; font-size: 20px">KİŞİSEL BİLGİLERİ</h4>
+                                                            <h4 class="sub-title" style="font-family: bold; font-size: 20px">KİŞİSEL BİLGİLERİ</h4>
                                                             <div class="form-group row">
                                                                 <div class="col-sm-6 input-control-label">
                                                                     <h4 class="col-form-label">Öğrenim Durumu</h4>
-                                                                    <select name="userCountry" formControlName="userCountry" class="form-control input-control">
+                                                                    <select name="userEducation" formControlName="userEducation" class="form-control input-control">
                                                                         <option value="" selected>Seçiniz</option>
                                                                         <option *ngFor="let education of educations" [value]="education.educationCode">{{education.educationDesc}}</option>
                                                                     </select>
-                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userCountry.valid">İl seçiniz!</div>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userEducation.valid">İl seçiniz!</div>
                                                                 </div>
                                                                 <div class="col-sm-6 input-control-label">
                                                                     <h4 class="col-form-label">Meslek</h4>
-                                                                    <select name="userProfession" formControlName="userProfession"  class="form-control input-control">
+                                                                    <select name="userProfession" formControlName="userProfession" class="form-control input-control">
                                                                         <option value="" selected>Seçiniz</option>
                                                                         <option *ngFor="let profession of professions" [value]="profession.professionCode">{{profession.professionDesc}}</option>
                                                                     </select>
@@ -126,22 +126,20 @@
                                                                 <div class="col-sm-6 input-control-label">
                                                                     <label class="col-form-label">Aylık Net Gelir(TL)</label>
                                                                     <div class="input-group input-control">
-                                                                        <span class="input-group-addon"><i class="icofont icofont-download-alt"></i></span> 
-                                                                        <input type="number" formControlName="userSalary" id="userSalary" name="userSalary" [(ngModel)]="userSalary" 
-                                                                            class="form-control autonumber" style="width: 100%;">
+                                                                        <span class="input-group-addon"><i class="icofont icofont-download-alt"></i></span>
+                                                                        <input type="number" formControlName="userSalary" id="userSalary" name="userSalary" class="form-control autonumber" style="width: 100%;">
                                                                     </div>
                                                                     <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userSalary.valid ">Aylık net gelirinizi giriniz!</div>
                                                                 </div>
                                                             </div>
 
-                                                            <h4 class="sub-title"  style="font-family: bold; font-size: 20px">KREDİ BAŞVURU BİLGİLERİ</h4>
+                                                            <h4 class="sub-title" style="font-family: bold; font-size: 20px">KREDİ BAŞVURU BİLGİLERİ</h4>
                                                             <div class="form-group row">
-                                                                <div class="col-sm-6 input-control-label"  >
+                                                                <div class="col-sm-6 input-control-label">
                                                                     <label class="col-form-label">Kontrat Tutarı</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
-                                                                        <input type="number" formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" [(ngModel)]="userContractAmount" 
-                                                                             class="form-control autonumber">
+                                                                        <input type="number" formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" class="form-control autonumber">
                                                                     </div>
                                                                     <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractAmount.valid">Kredi tutarını giriniz!</div>
                                                                 </div>
@@ -149,8 +147,7 @@
                                                                     <label class="col-form-label">Kontrat Vadesi(Ay)</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
-                                                                        <input type="number" formControlName="userContractExpiry"  id="userContractExpiry" name="userContractExpiry" [(ngModel)]="userContractExpiry"
-                                                                           class="form-control autonumber">
+                                                                        <input type="number" formControlName="userContractExpiry" id="userContractExpiry" name="userContractExpiry" class="form-control autonumber">
                                                                     </div>
                                                                     <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractExpiry.valid">Kontrat vadesi giriniz!</div>
                                                                 </div>
@@ -160,10 +157,10 @@
                                                 </fieldset>
                                             </wizard-step>
 
-                                            <wizard-step [title]=" 'Sonuç' " [showPrev]="step2.showPrev " (onComplete)="onComplete($event) ">
+                                            <wizard-step [title]=" 'Sonuç' " [showPrev]="step2.showPrev " [previousValue]="previousValueStep" [nextValue]="doneValueStep" (onComplete)="onComplete($event) ">
                                                 <fieldset class="wizard-fielset ">
                                                     <img class="logo " src="assets/images/users_2.png " alt="logo.png ">
-                                                    <h2 class="fs-title ">Sonuç</h2>
+                                                    <h2 class="fs-title ">Başvuru Bilgisi</h2>
                                                     <h3 class="fs-subtitle ">Başvurunuz başarılı bir şekilde alınmıştır!</h3>
                                                 </fieldset>
                                             </wizard-step>

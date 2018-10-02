@@ -130,4 +130,10 @@ export class WizardComponent implements AfterContentInit {
     this.next(forward);
   }
 
+
+  get dynamicComplete(): boolean{
+    this.activeStep.onComplete.emit();
+    this._isCompleted = true;
+    return true;
+  }
 }

@@ -1,116 +1,240 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop: true}"></ngx-loading>
 <div class="row">
+    <!--KİŞİSEL BİLGİLER-->
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5>Booking Full Details</h5>
-                <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                <h5 style="font-family: bold; font-size: 20px">KİŞİSEL BİLGİLER</h5>
+                <!--<span>-</span>-->
                 <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
             </div>
             <div class="card-block">
-                    <div class="j-wrapper j-wrapper-640">
-                        <form action="j-pro/php/action.php" method="post" class="j-pro" id="j-pro" novalidate>
-                            <div class="j-content">
-                                <!-- start name -->
-                                <div class="j-unit">
-                                    <label class="j-label">Your name</label>
-                                    <div class="j-input">
-                                        <label class="j-icon-right" for="name">
-                                            <i class="icofont icofont-ui-user"></i>
-                                        </label>
-                                        <input type="text" id="name" name="name">
-                                    </div>
-                                </div>
-                                <!-- end name -->
-                                <!-- start email phone -->
-                                <div class="j-row">
-                                    <div class="j-span6 j-unit">
-                                        <label class="j-label">Your email</label>
-                                        <div class="j-input">
-                                            <label class="j-icon-right" for="email">
-                                                <i class="icofont icofont-envelope"></i>
-                                            </label>
-                                            <input type="email" id="email" name="email">
-                                        </div>
-                                    </div>
-                                    <div class="j-span6 j-unit">
-                                        <label class="j-label">Phone/Mobile</label>
-                                        <div class="j-input">
-                                            <label class="j-icon-right" for="phone">
-                                                <i class="icofont icofont-phone"></i>
-                                            </label>
-                                            <input type="text" id="phone" name="phone">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <app-card>
+                            <h4 class="sub-title">Kiracı Bilgileri</h4>
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">Adı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="tenantName" name="tenantName" [(ngModel)]="tenant.firstname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end email phone -->
-                                <div class="j-divider j-gap-bottom-25"></div>
-                                <!-- start guests -->
-                                <div class="j-row">
-                                    <div class="j-span6 j-unit">
-                                        <label class="j-label">Adult guests</label>
-                                        <div class="j-input">
-                                            <label class="j-icon-right" for="adults">
-                                                <i class="icofont icofont-waiter"></i>
-                                            </label>
-                                            <input type="text" id="adults" name="adults">
-                                            <span class="j-tooltip j-tooltip-right-top">Number of adult guests</span>
-                                        </div>
-                                    </div>
-                                    <div class="j-span6 j-unit">
-                                        <label class="j-label">Children guests</label>
-                                        <div class="j-input">
-                                            <label class="j-icon-right" for="children">
-                                                <i class="icofont icofont-woman-in-glasses"></i>
-                                            </label>
-                                            <input type="text" id="children" name="children">
-                                            <span class="j-tooltip j-tooltip-right-top">Number of children</span>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">Soyadı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="tenantLastname" name="tenantLastname" [(ngModel)]="tenant.surname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end guests -->
-                                <!-- start date -->
-                                <div class="j-row">
-                                    <div class="j-span6 j-unit">
-                                        <label class="j-label">Check-in date</label>
-                                        <div class="j-input">
-                                            <label class="j-icon-right" for="date_from">
-                                                <i class="icofont icofont-ui-calendar"></i>
-                                            </label>
-                                            <input type="text" id="date_from" name="date_from" readonly="">
-                                        </div>
-                                    </div>
-                                    <div class="j-span6 j-unit">
-                                        <label class="j-label">Check-out date</label>
-                                        <div class="j-input">
-                                            <label class="j-icon-right" for="date_to">
-                                                <i class="icofont icofont-ui-calendar"></i>
-                                            </label>
-                                            <input type="text" id="date_to" name="date_to" readonly="">
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">Borçlu Hesap Numarası</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-credit-card"></i></span>
+                                            <input type="text" id="tenantCustomerNumber" name="tenantCustomerNumber" [(ngModel)]="tenant.customerNumber" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end date -->
-                                <div class="j-divider j-gap-bottom-25"></div>
-                                <!-- start message -->
-                                <div class="j-unit">
-                                    <label class="j-label">Comments/Message</label>
-                                    <div class="j-input">
-                                        <textarea spellcheck="false" name="message"></textarea>
+                            </form>
+                        </app-card>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-card>
+                            <h4 class="sub-title">Ev Sahibi Bilgileri</h4>
+                            <form [formGroup]="residenceOwnerForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">T.C. Kimlik Numarası</label>
+                                        <div class="input-group input-group-button">
+                                            <input type="text" class="form-control">
+                                            <span class="input-group-addon" id="basic-addon10">
+                                                <button class="btn btn-primary"><i class="icofont icofont-user-search"></i>Ara</button>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- end message -->
-                                <!-- start response from server -->
-                                <div class="j-response"></div>
-                                <!-- end response from server -->
-                            </div>
-                            <!-- end /.content -->
-                            <div class="j-footer">
-                                <button type="submit" class="btn btn-primary">Booking</button>
-                            </div>
-                            <!-- end /.footer -->
-                        </form>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Adı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="residenceOwnerName" name="residenceOwnerName" [(ngModel)]="residenceOwner.firstname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <div class="col-sm-12 input-control-label">
+                                            <label class="col-form-label">Soyadı</label>
+                                            <div class="input-group input-control">
+                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                <input type="text" id="residenceOwnerLastname" name="residenceOwnerLastname" [(ngModel)]="residenceOwner.surname" [ngModelOptions]="{standalone: true}" [disabled]=" true" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <h4 class="col-form-label">Bankalar</h4>
+                                        <select name="residenceOwnerBank" formControlName="residenceOwnerBank" class="form-control input-control">
+                                            <option value="" selected>Seçiniz</option>
+                                            <option *ngFor="let bank of banks" [value]="bank.bankCode">{{bank.bankName}}</option>
+                                        </select>
+                                        <div class="messages text-danger error label-control" *ngIf="!residenceOwnerForm.controls.residenceOwnerBank.valid">Banka seçiniz!</div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <h4 class="col-form-label">Alacaklı Hesap Numarası</h4>
+                                        <select name="residenceOwnerAccount" formControlName="residenceOwnerAccount" class="form-control input-control">
+                                            <option value="" selected>Seçiniz</option>
+                                            <option *ngFor="let account of accounts" [value]="account.accountNumber">{{account.iban}}</option>
+                                        </select>
+                                        <div class="messages text-danger error label-control" *ngIf="!residenceOwnerForm.controls.residenceOwnerAccount.valid">Hesap numarası seçiniz!</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
+    <!--KİŞİSEL BİLGİLER End-->
+
+    <!--ÖDEME PLANI BİLGİLERİ-->
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-header">
+                <h5 style="font-family: bold; font-size: 20px">ÖDEME PLANI BİLGİLERİ</h5>
+                <!--<span>-</span>-->
+                <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <app-card>
+                            <form [formGroup]="paymentPlanForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Taksit Adedi</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                            <input type="number" formControlName="paymentOrderInstallmentCount" id="paymentOrderInstallmentCount" name="paymentOrderInstallmentCount" class="form-control autonumber">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderInstallmentCount.valid">Taksit adedini giriniz!</div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Toplam Tutarı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                            <input type="number" formControlName="paymentOrderTotalAmount" id="paymentOrderTotalAmount" name="paymentOrderTotalAmount" class="form-control autonumber">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderTotalAmount.valid">Toplam tutarını giriniz!</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Depozito Tutarı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                            <input type="number" formControlName="paymentOrderDepositAmount" id="paymentOrderDepositAmount" name="paymentOrderDepositAmount" class="form-control autonumber">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderDepositAmount.valid">Depozito tutarını giriniz!</div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Komisyon Tutarı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                            <input type="number" formControlName="paymentOrderCommissionAmount" id="paymentOrderCommissionAmount" name="paymentOrderCommissionAmount" class="form-control autonumber">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderCommissionAmount.valid">Komisyon tutarını giriniz!</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <!--<div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">İlk Taksit Tarihi</label>
+                                        <div class="input-group">
+                                            <input class="form-control" formControlName="paymentOrderFirstInstallmentDate" id="paymentOrderFirstInstallmentDate" name="paymentOrderFirstInstallmentDate" placeholder="dd-mm-yyyy" name="dp" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="firstInstallmentDate"
+                                                dateFormat="dd-MMM-yyyy">
+                                            <div class="input-group-addon bg-default" (click)="d.toggle()">
+                                                <span class="icofont icofont-ui-calendar"></span>
+                                            </div>
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderFirstInstallmentDate.valid">İlk taksit tarihini giriniz!</div>
+                                    </div>-->
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">İlk Taksit Tarihi</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-ui-calendar"></i></span>
+                                            <input type="date" formControlName="paymentOrderFirstInstallmentDate" id="paymentOrderFirstInstallmentDate" name="paymentOrderFirstInstallmentDate" class="form-control">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!paymentPlanForm.controls.paymentOrderFirstInstallmentDate.valid">İlk taksit tarihini giriniz!</div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--ÖDEME PLANI BİLGİLERİ End -->
+
+    <!--BİLDİRİM BİLGİLERİ-->
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="card-header">
+                <h5 style="font-family: bold; font-size: 20px">BİLDİRİM BİLGİLERİ</h5>
+                <!--<span>-</span>-->
+                <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        <app-card>
+                            <form [formGroup]="paymentPlanForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--BİLDİRİM BİLGİLERİ End-->
+
+
 </div>
