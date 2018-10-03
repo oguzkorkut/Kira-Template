@@ -57,6 +57,18 @@ export class KiraService {
       })
       .catch(error => this.handleError(error));
   }
+
+  
+  customerInformationByCustomerNumber(customerNumber: string): Promise<ReturnModel> {
+    this.createHeader();
+    return this.http
+      .get(this.serviceUrl + '/user/customerInformationByCustomerNumber/' + customerNumber, { headers: this.headers })
+      .toPromise()
+      .then((response) => {
+        return response.json() as ReturnModel;
+      })
+      .catch(error => this.handleError(error));
+  }
   
   getCities(): Promise<ReturnModel> {
     this.createHeader();
