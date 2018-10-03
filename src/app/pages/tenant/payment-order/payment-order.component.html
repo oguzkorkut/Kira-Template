@@ -202,91 +202,91 @@
                 <!--<span>-</span>-->
                 <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
             </div>
-            
+
             <div class="card-block">
-                    <div class="row">
-                        <div class="col-md-6">
-    
-                            <app-card>
-                                <label class="label-sub-title">Bildirim Tercihleri</label>
-                                <form [formGroup]="notificationPreferenceForm">
-                                    <div class="form-group row" style="padding-top: 22px;">
-                                        <label class="col-sm-3">Ödeme Öncesi</label>
-                                        <div class="col-sm-9">
-                                            <div class="checkbox-fade fade-in-primary">
-                                                <label>
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <app-card>
+                            <label class="label-sub-title">Bildirim Tercihleri</label>
+                            <form [formGroup]="notificationPreferenceForm">
+                                <div class="form-group row" style="padding-top: 22px;">
+                                    <label class="col-sm-3">Ödeme Öncesi</label>
+                                    <div class="col-sm-9">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
                                                     <input type="checkbox" value="SMS" formControlName="firstNotificationPreferences">
                                                     <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                                     <span>SMS</span>
                                                 </label>
-                                            </div>
-                                            <div class="checkbox-fade fade-in-primary">
-                                                <label>
+                                        </div>
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
                                                     <input type="checkbox" value="E-Posta" formControlName="firstNotificationPreferences">
                                                     <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                                     <span>E-Posta</span>
                                                 </label>
-                                            </div>
-                                            <div class="messages text-danger" *ngIf="notificationPreferenceForm.controls.firstNotificationPreferences.errors?.required">En az bildirim kanalı seçiniz!</div>
                                         </div>
+                                        <div class="messages text-danger" *ngIf="notificationPreferenceForm.controls.firstNotificationPreferences.errors?.required">En az bildirim kanalı seçiniz!</div>
                                     </div>
-                                    <div class="form-group row" style="padding-top: 22px;">
-                                        <label class="col-sm-3">Ödeme Sonrası</label>
-                                        <div class="col-sm-9">
-                                            <div class="checkbox-fade fade-in-primary">
-                                                <label>
+                                </div>
+                                <div class="form-group row" style="padding-top: 22px;">
+                                    <label class="col-sm-3">Ödeme Sonrası</label>
+                                    <div class="col-sm-9">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
                                                     <input type="checkbox" value="SMS" formControlName="lastNotificationPreferences">
                                                     <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                                     <span>SMS</span>
                                                 </label>
-                                            </div>
-                                            <div class="checkbox-fade fade-in-primary">
-                                                <label>
+                                        </div>
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
                                                     <input type="checkbox" value="E-Posta" formControlName="lastNotificationPreferences">
                                                     <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                                     <span>E-Posta</span>
                                                 </label>
-                                            </div>
-                                            <div class="messages text-danger" *ngIf="notificationPreferenceForm.controls.lastNotificationPreferences.errors?.required">En az bildirim kanalı seçiniz!</div>
                                         </div>
+                                        <div class="messages text-danger" *ngIf="notificationPreferenceForm.controls.lastNotificationPreferences.errors?.required">En az bildirim kanalı seçiniz!</div>
                                     </div>
-                                </form>
-                            </app-card>
-                        </div>
-    
-                        <div class="col-md-6">
-                            <app-card>
-                                <label class="label-sub-title">İletişim Tercihleri</label>
-                                <form [formGroup]="communicationPreferenceForm">
-                                    <div class="form-group row">
-                                        <div class="col-sm-4 input-control-label">
-                                            <label class="col-form-label">Cep Telefonu</label>
-                                        </div>
-                                        <div class="col-sm-8 input-control-label">
-                                            <div class="input-group input-control">
-                                                <span class="input-group-addon"><i class="icofont icofont-stock-mobile"></i></span>
-                                                <input type="text" formControlName="paymentOrderMobilePhone" id="paymentOrderMobilePhone" name="paymentOrderMobilePhone" class="form-control" [textMask]="{mask: mask}">
-                                            </div>
-                                            <div class="messages text-danger error label-control" *ngIf="!communicationPreferenceForm.controls.paymentOrderMobilePhone.valid">Cep telefonu numarası giriniz!</div>
-                                        </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+
+                    <div class="col-md-6">
+                        <app-card>
+                            <label class="label-sub-title">İletişim Tercihleri</label>
+                            <form [formGroup]="communicationPreferenceForm">
+                                <div class="form-group row">
+                                    <div class="col-sm-4 input-control-label">
+                                        <label class="col-form-label">Cep Telefonu</label>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4 input-control-label">
-                                            <label class="col-form-label">E-Posta</label>
+                                    <div class="col-sm-8 input-control-label">
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-stock-mobile"></i></span>
+                                            <input type="text" formControlName="paymentOrderMobilePhone" id="paymentOrderMobilePhone" name="paymentOrderMobilePhone" class="form-control" [textMask]="{mask: mask}">
                                         </div>
-                                        <div class="col-sm-8 input-control-label">
-                                            <div class="input-group input-control">
-                                                <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
-                                                <input type="email" formControlName="paymentOrderEMail" id="paymentOrderEMail" name="paymentOrderEMail" class="form-control">
-                                            </div>
-                                            <div class="messages text-danger error label-control" *ngIf="!communicationPreferenceForm.controls.paymentOrderEMail.valid">E-Posta giriniz!</div>
-                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!communicationPreferenceForm.controls.paymentOrderMobilePhone.valid">Cep telefonu numarası giriniz!</div>
                                     </div>
-                                </form>
-                            </app-card>
-                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 input-control-label">
+                                        <label class="col-form-label">E-Posta</label>
+                                    </div>
+                                    <div class="col-sm-8 input-control-label">
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
+                                            <input type="email" formControlName="paymentOrderEMail" id="paymentOrderEMail" name="paymentOrderEMail" class="form-control">
+                                        </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!communicationPreferenceForm.controls.paymentOrderEMail.valid">E-Posta giriniz!</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
                     </div>
                 </div>
+            </div>
 
         </div>
     </div>
