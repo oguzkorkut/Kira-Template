@@ -8,6 +8,7 @@ import { CONSTANTS } from '../../../service/constants';
 import { PhoneFilterPipe } from '../../../pipe/phone-filter.pipe';
 import { KiraService } from '../../../service/kira.service';
 import { NotificationsService } from 'angular2-notifications';
+import { ReturnModel } from '../../../entity/ReturnModel';
 
 declare var $: any;
 
@@ -21,9 +22,9 @@ declare var $: any;
 export class PaymentOrderComponent implements OnInit {
 
     public options = {
-        position: ['bottom', 'right'],
+        position: ['top', 'right'],
         timeOut: 3000,
-        lastOnBottom: true
+        lastOnTop: true
     };
 
     public mask: Array<string | RegExp>;
@@ -68,10 +69,10 @@ export class PaymentOrderComponent implements OnInit {
     }
 
     createResidenceOwnerFormGroup(){
-        const paymentOrderInstallmentCount= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
-        const paymentOrderTotalAmount= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
-        const paymentOrderDepositAmount= new FormControl(0, [Validators.required, CustomValidators.gt(-1)]);
-        const paymentOrderCommissionAmount= new FormControl(0, [Validators.required, CustomValidators.gt(-1)]);
+        const paymentOrderInstallmentCount= new FormControl('', [Validators.required, CustomValidators.gt(0)]);
+        const paymentOrderTotalAmount= new FormControl('', [Validators.required, CustomValidators.gt(0)]);
+        const paymentOrderDepositAmount= new FormControl('', [Validators.required, CustomValidators.gt(-1)]);
+        const paymentOrderCommissionAmount= new FormControl('', [Validators.required, CustomValidators.gt(-1)]);
         const paymentOrderFirstInstallmentDate= new FormControl('', Validators.required);
 
         this.paymentPlanForm = new FormGroup({
@@ -115,8 +116,33 @@ export class PaymentOrderComponent implements OnInit {
         this.notificationPreferenceForm = new FormGroup({
             firstNotificationPreferences:firstNotificationPreferences,
             lastNotificationPreferences:lastNotificationPreferences
-
         });
+    }
+
+    getResidenceOwnerByIdentity(identityElement: HTMLInputElement){
+        if (identityElement.value) {
+            console.log(identityElement.value);
+           
+            this.loading = true;
+            this.kiraService.getCustomerInformationByTCKN(identityElement.value)
+              .then((res: ReturnModel) => {
+          
+                this.loading = false;
+                if (res.status) {
+                //Obje
+                  this.notificationsService.success('Bilgi', res.message);
+                } else {
+                  this.notificationsService.error('Hata', res.message);
+                }
+              })
+              .catch((res: Response) => {
+                this.notificationsService.error('Hata', res.statusText);
+                this.loading = false;
+              }
+            );
+        } else {
+            this.notificationsService.warn("Bilgi","T.C. Kimlik numarası giriniz!");
+        }
     }
 
     cancelApplication(){

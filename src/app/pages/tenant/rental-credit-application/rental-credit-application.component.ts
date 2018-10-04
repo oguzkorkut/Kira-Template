@@ -84,7 +84,7 @@ export class RentalCreditApplicationComponent implements OnInit {
   /**
    * Kullanici telefon numarasi
    */
-  public phoneNumber: string = '';
+  //ublic phoneNumber: string = '';
   public identityNumber: string;
   public isContractRead: boolean = false;
   public contratCheckBox: boolean;
@@ -141,7 +141,7 @@ export class RentalCreditApplicationComponent implements OnInit {
 
     this.step1Form = new FormGroup({
       identityNumber: identityNumber,
-      phoneNumber: phoneNumber,
+      userPhoneNumber: phoneNumber,
       contratCheckBox: contratCheckBox
     });
   }
@@ -173,7 +173,7 @@ export class RentalCreditApplicationComponent implements OnInit {
      * Step1 onChanges
      */
     this.step1Form.valueChanges.subscribe(val => {
-       if(this.step1Form.valid && this.phoneFilter.transform(val.phoneNumber) != ''){
+       if(this.step1Form.valid && this.phoneFilter.transform(val.userPhoneNumber) != ''){
           this.step1Submitted = true;
        } else{
         this.step1Submitted = false;
@@ -288,7 +288,7 @@ getProfessions(): void {
     
     console.log('Step1 - Next' + event);
     this.loading = true;
-    this.kiraService.controlAppStepByTCAndMobilePhone(this.identityNumber, this.phoneFilter.transform(this.phoneNumber))
+    this.kiraService.controlAppStepByTCAndMobilePhone(this.identityNumber, this.phoneFilter.transform(this.step1Form.controls.userPhoneNumber.value))
       .then((res: ReturnModel) => {
   
         this.loading = false;
@@ -316,7 +316,7 @@ getProfessions(): void {
     creditApplication = new CreditApplication;
 
     creditApplication["identityNumber"] = this.identityNumber;
-    creditApplication["phoneNumber"] = this.phoneNumber;
+    creditApplication["phoneNumber"] = this.step1Form.controls.phoneNumber.value;
     creditApplication["userSalary"] = this.step2Form.controls.userSalary.value;
     creditApplication["userContractExpiry"] = this.step2Form.controls.userContractExpiry.value;
     creditApplication["userContractAmount"] = this.step2Form.controls.userContractAmount.value;

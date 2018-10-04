@@ -37,8 +37,8 @@
                                                                 <label class="col-form-label">Cep Telefonu</label>
                                                             </div>
                                                             <div class="col-sm-10">
-                                                                <input id="1" name="phoneNumber" formControlName="phoneNumber" [(ngModel)]="phoneNumber" [textMask]="{mask: mask}" type="text" class="form-control input-control" placeholder="Cep Telefonu" />
-                                                                <div class="messages text-danger error label-control" *ngIf="step1Form.controls.phoneNumber.errors?.required">Cep telefonu numarası giriniz!</div>
+                                                                <input id="userPhoneNumber" name="userPhoneNumber" formControlName="userPhoneNumber" [textMask]="{mask: mask}" type="text" class="form-control input-control" placeholder="Cep Telefonu" />
+                                                                <div class="messages text-danger error label-control" *ngIf="step1Form.controls.userPhoneNumber.errors?.required">Cep telefonu numarası giriniz!</div>
                                                             </div>
                                                         </div>
 
@@ -191,5 +191,5 @@
     </div>
 </div>
 
-<ng2-toasty [position]="position "></ng2-toasty>
-<simple-notifications [options]="options "></simple-notifications>
+<ng2-toasty [position]="position"></ng2-toasty>
+<simple-notifications [options]="options"></simple-notifications>
