@@ -31,7 +31,6 @@ export const paymentOrderRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(paymentOrderRoutes),
     SharedModule,
-    CommonModule,
     FormsModule,
     TextMaskModule,
     ReactiveFormsModule,

@@ -1,5 +1,172 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' ,fullScreenBackdrop: true}"></ngx-loading>
 <div class="row">
+    <!--KİŞİSEL BİLGİLER-->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 style="font-family: bold; font-size: 20px">KİŞİSEL BİLGİLER</h5>
+                <!--<span>-</span>-->
+                <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+            </div>
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-6">
 
-    Müşteri oluşturma
+                        <app-card>
+                            <h5>Kimlik Bilgileri</h5>
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Adı</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="firstname" name="firstname"  class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Soyad</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="surname" name="surname"  class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">T.C. Kimlik Numarası</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="tckn" name="tckn"  class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 input-control-label">
+                                        <label class="col-form-label">Vergi Kimlik Numarası</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="vkn" name="vkn" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
 
+                    <div class="col-md-6">
+                        <app-card>
+                            <h5>İletişim Bilgileri</h5>
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">Telefon Numarası</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-credit-card"></i></span>
+                                            <input type="text" id="identity" name="identity" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 input-control-label">
+                                        <label class="col-form-label">E-Posta</label>
+                                        <div class="input-group input-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-credit-card"></i></span>
+                                            <input type="text" id="email" name="email" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </app-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--KİŞİSEL BİLGİLER End-->
+
+
+    <!--SİSTEM BİLGİLERİ-->
+    <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 style="font-family: bold; font-size: 20px">SİSTEM BİLGİLERİ</h5>
+                    <!--<span>-</span>-->
+                    <div class="card-header-right"> <i class="icofont icofont-spinner-alt-5"></i> </div>
+                </div>
+                <div class="card-block">
+                    <div class="row">
+                        <div class="col-md-12">
+    
+                            <app-card>
+                                <form>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 input-control-label">
+                                            <label class="col-form-label">Kullanıcı Adı</label>
+                                            <div class="input-group input-control">
+                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                <input type="text" id="username" name="username"  class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 input-control-label">
+                                            <h4 class="col-form-label">Meslek</h4>
+                                            <select name="userProfession"  class="form-control input-control">
+                                                <option value="" selected>Seçiniz</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                            <div class="col-sm-6 input-control-label">
+                                                <label class="col-form-label">Şifre</label>
+                                                <div class="input-group input-control">
+                                                    <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                    <input type="password" id="password" name="password"  class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 input-control-label">
+                                                <div class="form-group row"> 
+                                                        <div class="col-sm-6">
+                                                            <label class="col-form-label">Şifre(Tekrar)</label>
+                                                            <div class="input-group input-control">
+                                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                                <input type="password" id="repassword" name="repassword"  class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6" style="margin: auto;">
+                                                            <div class="checkbox-fade fade-in-primary">
+                                                                <label>
+                                                                    <input type="checkbox" value="smscode">
+                                                                    <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                                    <span>Şifre SMS ile gönderilsin</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                </form>
+                            </app-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <!--SİSTEM BİLGİLERİ End -->
+
+    <!--İŞLEM TAMAMLAMA-->
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12" style="text-align: right">
+                        <button class="btn btn-danger btn-round" (click)="cancel();">Vazgeç</button>
+                        <button class="btn btn-success btn-round" (click)="save();">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--İŞLEM TAMAMLAMA End-->
 </div>
+
+<simple-notifications [options]="options"></simple-notifications>
