@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { CustomerListComponent } from './customer-list.component';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedModule} from '../../../shared/shared.module';
-import {ChartModule} from 'angular2-chartjs';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { DataTableModule } from 'angular2-datatable';
 
 export const CustomerListRoutes: Routes = [
   {
@@ -22,7 +24,10 @@ export const CustomerListRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(CustomerListRoutes),
     SharedModule,
-    ChartModule
+    SharedModule,
+    FormsModule,
+    HttpModule,
+    DataTableModule
   ],
   declarations: [CustomerListComponent]
 })

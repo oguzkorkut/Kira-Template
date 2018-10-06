@@ -58,7 +58,6 @@ export class UserLoginComponent implements OnInit {
           this.userService.getLoggedInUser().then((returnModel: ReturnModel) => {
 
             const user = returnModel.result as User;
-            this._cookieService.set('target', user.target);
             const that = this;
             that.router.navigate(['/dashboard/default'], { relativeTo: that.route });
 
