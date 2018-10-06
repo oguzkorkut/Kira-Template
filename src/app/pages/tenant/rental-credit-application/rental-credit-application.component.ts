@@ -13,8 +13,6 @@ import { Profession } from '../../../entity/profession';
 import { NgForm } from '@angular/forms';
 import { KiraService } from '../../../service/kira.service';
 import { ReturnModel } from '../../../entity/ReturnModel';
-import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
-import { City } from '../../../entity/city';
 import { NotificationsService } from 'angular2-notifications';
 import { User } from '../../../entity/user';
 import { Education } from '../../../entity/education';
@@ -120,7 +118,6 @@ export class RentalCreditApplicationComponent implements OnInit {
 
   constructor(private  phoneFilter: PhoneFilterPipe, 
               private kiraService: KiraService, 
-              private toastyService: ToastyService, 
               private notificationsService: NotificationsService) {
 
     this.user = new User();
