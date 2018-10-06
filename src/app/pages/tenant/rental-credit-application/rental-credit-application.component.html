@@ -111,7 +111,7 @@
                                                                         <option value="" selected>Seçiniz</option>
                                                                         <option *ngFor="let education of educations" [value]="education.educationCode">{{education.educationDesc}}</option>
                                                                     </select>
-                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userEducation.valid">İl seçiniz!</div>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userEducation.valid">Öğrenim durumu seçiniz!</div>
                                                                 </div>
                                                                 <div class="col-sm-6 input-control-label">
                                                                     <h4 class="col-form-label">Meslek</h4>
@@ -136,20 +136,62 @@
                                                             <h4 class="sub-title" style="font-family: bold; font-size: 20px">KREDİ BAŞVURU BİLGİLERİ</h4>
                                                             <div class="form-group row">
                                                                 <div class="col-sm-6 input-control-label">
-                                                                    <label class="col-form-label">Kontrat Tutarı</label>
+                                                                    <label class="col-form-label">Kira Bedeli(1 aylık)</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
                                                                         <input type="number" formControlName="userContractAmount" id="userContractAmount" name="userContractAmount" class="form-control autonumber">
                                                                     </div>
-                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractAmount.valid">Kredi tutarını giriniz!</div>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractAmount.valid">Kira bedelini giriniz!</div>
                                                                 </div>
                                                                 <div class="col-sm-6 input-control-label">
                                                                     <label class="col-form-label">Kontrat Vadesi(Ay)</label>
+                                                                    <select name="userContractExpiry" formControlName="userContractExpiry" class="form-control input-control">
+                                                                        <option value="1" selected>1</option>
+                                                                        <option value="2" selected>2</option>
+                                                                        <option value="3" selected>3</option>
+                                                                        <option value="4" selected>4</option>
+                                                                        <option value="5" selected>5</option>
+                                                                        <option value="6" selected>6</option>
+                                                                        <option value="7" selected>7</option>
+                                                                        <option value="8" selected>8</option>
+                                                                        <option value="9" selected>9</option>
+                                                                        <option value="10" selected>10</option>
+                                                                        <option value="11" selected>11</option>
+                                                                        <option value="12" selected>12</option>
+                                                                    </select>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractExpiry.valid">Kontrat vadesi giriniz!</div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <label class="col-form-label">Komisyon Tutarı</label>
                                                                     <div class="input-group input-control">
                                                                         <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
-                                                                        <input type="number" formControlName="userContractExpiry" id="userContractExpiry" name="userContractExpiry" class="form-control autonumber">
+                                                                        <input type="number" formControlName="userCommissionAmount" id="userCommissionAmount" name="userCommissionAmount" class="form-control autonumber">
                                                                     </div>
-                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userContractExpiry.valid">Kontrat vadesi giriniz!</div>
+                                                                    <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userCommissionAmount.valid">Komisyon tutarını giriniz!</div>
+                                                                </div>
+                                                                <div class="col-sm-6 input-control-label">
+                                                                    <div class="form-group row"> 
+                                                                        <div class="col-sm-6">
+                                                                            <label class="col-form-label">Depozito Tutarı</label>
+                                                                            <div class="input-group input-control">
+                                                                                <span class="input-group-addon"><i class="icofont icofont-expand-alt"></i></span>
+                                                                                <input type="number" formControlName="userDepositAmount" id="userDepositAmount" name="userDepositAmount" class="form-control autonumber">
+                                                                            </div>
+                                                                            <div class="messages text-danger error label-control" *ngIf="!step2Form.controls.userDepositAmount.valid">Depozito tutarını giriniz!</div>
+                                                                        </div>
+                                                                        <div class="col-sm-6" style="padding-top: 44px;">
+                                                                            <div class="checkbox-fade fade-in-primary">
+                                                                                <label>
+                                                                                    <input type="checkbox" value="deposit" formControlName="userCalculateDeposit">
+                                                                                    <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                                                    <span>Depozito hesaplansın mı?</span>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -191,5 +233,4 @@
     </div>
 </div>
 
-<ng2-toasty [position]="position"></ng2-toasty>
 <simple-notifications [options]="options"></simple-notifications>

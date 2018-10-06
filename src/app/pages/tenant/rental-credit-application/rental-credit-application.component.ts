@@ -147,18 +147,30 @@ export class RentalCreditApplicationComponent implements OnInit {
   }
 
   createStep2FormGroup(){
-    const userSalary= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
-    const userContractExpiry= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
-    const userContractAmount= new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
-    const userEducation= new FormControl('', Validators.required);
-    const userProfession= new FormControl('', Validators.required);
+    const userSalary = new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
+    const userContractExpiry = new FormControl(1, Validators.required);
+    const userContractAmount = new FormControl(0, [Validators.required, CustomValidators.gt(0)]);
+    const userEducation = new FormControl('', Validators.required);
+    const userProfession = new FormControl('', Validators.required);
+    const userCommissionAmount = new FormControl('', Validators.required);
+    const userDepositAmount = new FormControl('', Validators.required);
+    const userCalculateDeposit = new FormControl('', Validators.required);
 
     this.step2Form = new FormGroup({
       userSalary: userSalary,
       userContractExpiry: userContractExpiry,
       userContractAmount: userContractAmount,
       userEducation: userEducation,
-      userProfession: userProfession
+      userCommissionAmount: userCommissionAmount,
+      userDepositAmount: userDepositAmount,
+      userProfession: userProfession,
+      userCalculateDeposit: userCalculateDeposit
+    });
+
+    this.step2Form.get('userContractAmount').valueChanges.subscribe(val => {
+      if(this.step2Form.controls.userCalculateDeposit.value){
+        this.step2Form.controls.userDepositAmount.setValue(this.step2Form.controls.userContractAmount.value);
+      }
     });
   }
 
