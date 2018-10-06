@@ -124,7 +124,7 @@ export class PaymentOrderComponent implements OnInit {
             console.log(identityElement.value);
            
             this.loading = true;
-            this.kiraService.getCustomerInformationByTCKN(identityElement.value)
+            this.kiraService.getCustomerInformationByTCKN(0, identityElement.value)
               .then((res: ReturnModel) => {
           
                 this.loading = false;
