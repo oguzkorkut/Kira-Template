@@ -252,17 +252,14 @@ export class RentalCreditApplicationComponent implements OnInit {
         this.educations = res.result as Education[];
         
         if(this.educations){
-          this.notificationsService.success('Bilgi', this.educations.length + " il kaydı çekildi.");
-         // this.openToast('warning', 'Bilgi', res.message);
+          //this.notificationsService.success('Bilgi', this.educations.length + " il kaydı çekildi.");
         }
       } else {
         this.notificationsService.error('Hata', res.message);
-        //this.openToast('error', 'Hata', res.message);
       }
     })
     .catch((res: Response) => {
       this.notificationsService.error('Hata', res.statusText);
-      //this.openToast('error', 'Hata', res.statusText);
     }
   );
 }
@@ -276,7 +273,7 @@ getProfessions(): void {
         this.professions = res.result as Profession[];
 
         if(this.professions){
-          this.notificationsService.success('Bilgi', this.professions.length + " meslek kaydı çekildi.");
+          //this.notificationsService.success('Bilgi', this.professions.length + " meslek kaydı çekildi.");
         }
       } else {
         this.notificationsService.error('Hata', res.message);
@@ -385,52 +382,4 @@ getProfessions(): void {
   step3: any = {
     showSecret: false
   };
-
-  
-  openToast2(type: string, title: string, message: string) {
-    /**
-    if (options.closeOther) {
-      this.toastyService.clearAll();
-    }
-     */
-    let options = this.getToastSettings();
-    this.position = options["position"] ? options["position"] : 'bottom-right';
-    
-    const toastOptions: ToastOptions = {
-      title: title,
-      msg: message,
-      showClose: options["showClose"],
-      timeout: options["timeout"],
-      theme: options["theme"],
-      onAdd: (toast: ToastData) => {
-        /* added */
-      },
-      onRemove: (toast: ToastData) => {
-        /* removed */
-      }
-    };
-
-    switch (type) {
-      case 'default': this.toastyService.default(toastOptions); break;
-      case 'info': this.toastyService.info(toastOptions); break;
-      case 'success': this.toastyService.success(toastOptions); break;
-      case 'wait': this.toastyService.wait(toastOptions); break;
-      case 'error': this.toastyService.error(toastOptions); break;
-      case 'warning': this.toastyService.warning(toastOptions); break;
-    }
-  }
-  
-  getToastSettings(){
-    let toastSetting = {
-      title : '',
-      msg:  '',
-      showClose : true,
-      timeout : 5000,
-      theme : 'bootstrap',
-      type : 'wait',
-      position:'center-center',
-      closeOther:true
-    }
-    return toastSetting;
-  }
 }
