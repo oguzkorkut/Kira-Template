@@ -47,10 +47,10 @@ export class KiraService {
       .catch(error => this.handleError(error));
   }
 
-  getCustomerInformationByTCKN(TCKN: string): Promise<ReturnModel> {
+  getCustomerInformationByTCKN(providerId: number, TCKN: string): Promise<ReturnModel> {
     this.createHeader();
     return this.http
-      .get(this.serviceUrl + '/user/getCustomerInformationByTCKN/' + TCKN, { headers: this.headers })
+      .get(this.serviceUrl + '/user/getCustomerInformationByTCKN/' + providerId +  '/' + TCKN, { headers: this.headers })
       .toPromise()
       .then((response) => {
         return response.json() as ReturnModel;
