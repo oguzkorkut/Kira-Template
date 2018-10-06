@@ -28,7 +28,7 @@
                                                                 <label class="col-form-label">T.C. Kimlik Numarası</label>
                                                             </div>
                                                             <div class="col-sm-10">
-                                                                <input type="text" formControlName="identityNumber" class="form-control autonumber input-control" name="identityNumber" currencyMask [(ngModel)]="identityNumber" maxlength="11" minlength="11" placeholder="T.C. Kimlik Numarası" [options]="{ prefix: '', thousands: '', decimal: '', align: 'left', allowZero: false }">
+                                                                <input type="text" formControlName="identityNumber" class="form-control autonumber input-control" name="identityNumber" currencyMask [(ngModel)]="identityNumber" maxlength="11" minlength="11" placeholder="T.C. Kimlik Numarası" [options]="{ prefix: '', thousands: '', decimal: '', align: 'left', allowZero: false }"  style="width: 30%"/>
                                                                 <div class="messages text-danger error label-control" *ngIf="!step1Form.controls.identityNumber.valid">T.C. kimlik numarası giriniz!</div>
                                                             </div>
                                                         </div>
@@ -37,16 +37,15 @@
                                                                 <label class="col-form-label">Cep Telefonu</label>
                                                             </div>
                                                             <div class="col-sm-10">
-                                                                <input id="userPhoneNumber" name="userPhoneNumber" formControlName="userPhoneNumber" [textMask]="{mask: mask}" type="text" class="form-control input-control" placeholder="Cep Telefonu" />
+                                                                <input id="userPhoneNumber" name="userPhoneNumber" formControlName="userPhoneNumber" [textMask]="{mask: mask}" type="text" class="form-control input-control" placeholder="Cep Telefonu" style="width: 30%"/>
                                                                 <div class="messages text-danger error label-control" *ngIf="step1Form.controls.userPhoneNumber.errors?.required">Cep telefonu numarası giriniz!</div>
                                                             </div>
                                                         </div>
-
                                                         <div class="row form-group">
                                                             <div class="col-sm-2">
 
                                                             </div>
-                                                            <div class="col-sm-10" style="font-size: 10px">
+                                                            <div class="col-sm-10" style="font-size: 10px;">
                                                                 <div class="alert alert-warning" role="alert">Kişisel verilerin işlenmesi ve Aktarılmasına ilişkin
                                                                     <a class="btn-info btn-outline-info waves-effect md-trigger" (click)="openContractText('step1ContractText')">Aydınlatma Metni</a> 'ni Görüntülemek İçin Tıklayınız.(Onaylanmadan önce görüntülemeniz
                                                                     gerekmektedir.)

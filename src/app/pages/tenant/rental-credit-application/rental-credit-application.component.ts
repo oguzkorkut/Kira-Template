@@ -82,7 +82,6 @@ export class RentalCreditApplicationComponent implements OnInit {
   /**
    * Kullanici telefon numarasi
    */
-  //ublic phoneNumber: string = '';
   public identityNumber: string;
   public isContractRead: boolean = false;
   public contratCheckBox: boolean;
@@ -99,13 +98,6 @@ export class RentalCreditApplicationComponent implements OnInit {
    */
   public step2Form: FormGroup;
 
-  /*
-  public userEducation: string;
-  public userProfession: string;
-  public userContractAmount: number;
-  public userContractExpiry: number;
-  public userSalary: number;
-*/
   step2Submitted: boolean = false;
 
   /**
@@ -192,13 +184,6 @@ export class RentalCreditApplicationComponent implements OnInit {
     /**
      * Step1 onChanges end
      */
-
-    /*
-    this.step1Form.get('phoneNumber').valueChanges.subscribe(val => {
-      console.log(val.phoneNumber);
-    });
-    */
-
   /**
    * Step2 onChanges
    */
@@ -215,11 +200,7 @@ export class RentalCreditApplicationComponent implements OnInit {
   /**
    * Step2 onChanges end
    */
-
-
-
   }
-
 /**
  * Step1 onChanges
  */
@@ -233,7 +214,6 @@ export class RentalCreditApplicationComponent implements OnInit {
       this.isContractRead = isContractRead;
     }
   }
-
 /**
  * Step1 onChanges end
  */
