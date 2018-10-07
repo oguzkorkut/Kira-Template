@@ -11,24 +11,25 @@
             <div class="card-block">
                 <div class="row">
                     <div class="col-md-6">
-
                         <app-card>
                             <h5>Kimlik Bilgileri</h5>
-                            <form>
+                            <form [formGroup]="personelInfoForm">
                                 <div class="form-group row">
                                     <div class="col-sm-6 input-control-label">
                                         <label class="col-form-label">Adı</label>
                                         <div class="input-group input-control">
                                             <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                            <input type="text" id="firstname" name="firstname"  class="form-control">
+                                            <input type="text" id="firstname" name="firstname" formControlName="firstname"  class="form-control">
                                         </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!personelInfoForm.controls.firstname.valid">Ad giriniz!</div>
                                     </div>
                                     <div class="col-sm-6 input-control-label">
                                         <label class="col-form-label">Soyad</label>
                                         <div class="input-group input-control">
                                             <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                            <input type="text" id="surname" name="surname"  class="form-control">
+                                            <input type="text" id="surname" name="surname" formControlName="surname" class="form-control">
                                         </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!personelInfoForm.controls.surname.valid">Soyad giriniz!</div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -36,15 +37,17 @@
                                         <label class="col-form-label">T.C. Kimlik Numarası</label>
                                         <div class="input-group input-control">
                                             <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                            <input type="text" id="tckn" name="tckn"  class="form-control">
+                                            <input type="text" id="tckn" name="tckn" formControlName="tckn"  class="form-control autonumber" currencyMask maxlength="11" minlength="11" [options]="{ prefix: '', thousands: '', decimal: '', align: 'left', allowZero: false }"/>
                                         </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!personelInfoForm.controls.tckn.valid">T.C. kimlik numarası giriniz!</div>
                                     </div>
                                     <div class="col-sm-6 input-control-label">
                                         <label class="col-form-label">Vergi Kimlik Numarası</label>
                                         <div class="input-group input-control">
                                             <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                            <input type="text" id="vkn" name="vkn" class="form-control">
+                                            <input type="text" id="vkn" name="vkn" formControlName="vkn" class="form-control">
                                         </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!personelInfoForm.controls.vkn.valid">Vergi kimlik numarası giriniz!</div>
                                     </div>
                                 </div>
                             </form>
@@ -54,23 +57,25 @@
                     <div class="col-md-6">
                         <app-card>
                             <h5>İletişim Bilgileri</h5>
-                            <form>
+                            <form [formGroup]="communicationInfoForm">
                                 <div class="form-group row">
                                     <div class="col-sm-12 input-control-label">
                                         <label class="col-form-label">Telefon Numarası</label>
                                         <div class="input-group input-control">
-                                            <span class="input-group-addon"><i class="icofont icofont-credit-card"></i></span>
-                                            <input type="text" id="identity" name="identity" class="form-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="phone" name="phone" formControlName="phone" class="form-control">
                                         </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!communicationInfoForm.controls.phone.valid">Telefon numarası giriniz!</div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12 input-control-label">
                                         <label class="col-form-label">E-Posta</label>
                                         <div class="input-group input-control">
-                                            <span class="input-group-addon"><i class="icofont icofont-credit-card"></i></span>
-                                            <input type="text" id="email" name="email" class="form-control">
+                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                            <input type="text" id="email" name="email" formControlName="email" class="form-control">
                                         </div>
+                                        <div class="messages text-danger error label-control" *ngIf="!communicationInfoForm.controls.email.valid">E-Posta adresi giriniz!</div>
                                     </div>
                                 </div>
                             </form>
@@ -97,52 +102,53 @@
                         <div class="col-md-12">
     
                             <app-card>
-                                <form>
+                                <form [formGroup]="systemInfoForm">
                                     <div class="form-group row">
                                         <div class="col-sm-6 input-control-label">
                                             <label class="col-form-label">Kullanıcı Adı</label>
                                             <div class="input-group input-control">
                                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                <input type="text" id="username" name="username"  class="form-control">
+                                                <input type="text" id="username" name="username" formControlName="username" class="form-control">
                                             </div>
+                                            <div class="messages text-danger error label-control" *ngIf="!systemInfoForm.controls.username.valid">Kullanıcı adı giriniz!</div>
                                         </div>
                                         <div class="col-sm-6 input-control-label">
                                             <h4 class="col-form-label">Meslek</h4>
-                                            <select name="userProfession"  class="form-control input-control">
+                                            <select id="profession" name="profession" formControlName="profession" class="form-control input-control">
                                                 <option value="" selected>Seçiniz</option>
                                             </select>
+                                            <div class="messages text-danger error label-control" *ngIf="!systemInfoForm.controls.profession.valid">Meslek seçiniz!</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                            <div class="col-sm-6 input-control-label">
-                                                <label class="col-form-label">Şifre</label>
-                                                <div class="input-group input-control">
-                                                    <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                    <input type="password" id="password" name="password"  class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 input-control-label">
-                                                <div class="form-group row"> 
-                                                        <div class="col-sm-6">
-                                                            <label class="col-form-label">Şifre(Tekrar)</label>
-                                                            <div class="input-group input-control">
-                                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                                <input type="password" id="repassword" name="repassword"  class="form-control">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6" style="margin: auto;">
-                                                            <div class="checkbox-fade fade-in-primary">
-                                                                <label>
-                                                                    <input type="checkbox" value="smscode">
-                                                                    <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                                                    <span>Şifre SMS ile gönderilsin</span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                               
+                                        <div class="col-sm-6 input-control-label">
+                                            <label class="col-form-label">Şifre</label>
+                                            <div class="input-group input-control">
+                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                <input type="password" id="password" name="password" formControlName="password" class="form-control">
                                             </div>
                                         </div>
+                                        <div class="col-sm-6 input-control-label">
+                                            <div class="form-group row"> 
+                                                <div class="col-sm-6">
+                                                    <label class="col-form-label">Şifre(Tekrar)</label>
+                                                    <div class="input-group input-control">
+                                                        <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                        <input type="password" id="repassword" name="repassword"  formControlName="repassword"  class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" style="margin: auto;">
+                                                    <div class="checkbox-fade fade-in-primary">
+                                                        <label>
+                                                            <input type="checkbox" value="smscode" formControlName="smscode">
+                                                            <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                            <span>Şifre SMS ile gönderilsin</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </app-card>
                         </div>
