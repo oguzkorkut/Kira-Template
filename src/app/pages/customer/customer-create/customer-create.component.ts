@@ -139,8 +139,6 @@ createSystemInfoFormGroup(){
         }
       }
 
-      role.name = this.systemInfoForm.controls.roles.value;
-
       roles.push(role);
 
       user.roleDtos = roles;
