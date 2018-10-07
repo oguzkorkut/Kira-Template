@@ -13,7 +13,7 @@ export class User{
     phone: string;
     email: string;
     title:string;
-    roles: Role[];
+    roleDtos: Role[];
     target: string;
     active:boolean;
     settings: string;

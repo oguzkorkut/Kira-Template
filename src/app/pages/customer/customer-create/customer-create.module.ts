@@ -13,6 +13,7 @@ import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifi
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { KiraService } from '../../../service/kira.service';
 import { PhoneFilterPipe } from '../../../pipe/phone-filter.pipe';
+import { UserService } from '../../../service/user.service';
 
 export const CustomerCreateRoutes: Routes = [
   {
@@ -43,7 +44,8 @@ export const CustomerCreateRoutes: Routes = [
   providers:[
     KiraService,
     NotificationsService,
-    PhoneFilterPipe
+    PhoneFilterPipe,
+    UserService
   ],
   declarations: [CustomerCreateComponent]
 })

@@ -2,10 +2,11 @@ import { User } from './../entity/user';
 import { StatusResponse } from './../entity/assets/statusResponse';
 import { CONSTANTS } from './constants';
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { CookieService } from 'ngx-cookie-service';
 import 'rxjs/add/operator/toPromise';
 import { ReturnModel } from '../entity/ReturnModel';
+import { Role } from '../entity/role';
 
 
 @Injectable()
@@ -55,6 +56,86 @@ export class UserService {
         return response.json() as StatusResponse;
       })
       .catch(error => this.handleError(error));
+  }
+
+  getAllUsers(): Promise<ReturnModel>{
+         
+    this.createHeader();
+   
+    return this.http.get(this.serviceUrl + '/getUsers/', { headers: this.headers }).toPromise()
+                    .then((response) => {
+                      return response.json() as ReturnModel;
+                    })
+                    .catch(error => this.handleError(error));
+  }
+
+  deleteUser(id: number): Promise<ReturnModel>{
+    this.createHeader();
+
+    var url = this.serviceUrl + '/delete/' + id ;
+
+    return this.http.delete(url, { headers: this.headers }).toPromise()
+              .then((response) => {
+                return response.json() as ReturnModel;
+              })
+              .catch(error => this.handleError(error));
+  }
+
+  updateUser(user: User): Promise<ReturnModel>{
+    this.createHeader();
+    
+    var url = this.serviceUrl + '/update';
+
+    return this.http.put(url, user, { headers: this.headers }).toPromise()
+              .then((response) => {
+                return response.json() as ReturnModel;
+              })
+              .catch(error => this.handleError(error));
+  }
+
+  addUser(user: User): Promise<ReturnModel>{
+    this.createHeader();
+    
+    var url = this.serviceUrl + '/save';
+
+    return this.http.post(url, user, { headers: this.headers }).toPromise()
+              .then((response) => {
+                return response.json() as ReturnModel;
+              })
+              .catch(error => this.handleError(error));
+  }
+
+  getRoles(): Promise<ReturnModel>{
+    this.createHeader();
+   
+    return this.http.get(this.serviceUrl + '/role/getRoles', { headers: this.headers }).toPromise()
+                    .then((response) => {
+                      return response.json() as ReturnModel;
+                    })
+                    .catch(error => this.handleError(error));
+  }
+  
+  addRole(role: Role): Promise<ReturnModel>{
+        
+    this.createHeader();
+
+    return this.http.post(this.serviceUrl + '/role/save', role, { headers: this.headers }).toPromise()
+                    .then((response) => {
+                      return response.json() as ReturnModel;
+                    })
+                    .catch(error => this.handleError(error));
+  }
+
+  deleteRole(id: number): Promise<ReturnModel>{
+    this.createHeader();
+      
+    var url = this.serviceUrl + '/role/delete/' + id ;
+
+    return this.http.delete(url, { headers: this.headers }).toPromise()
+              .then((response) => {
+                return response.json() as ReturnModel;
+              })
+              .catch(error => this.handleError(error));
   }
  /* update(user): Promise<User> {
     return this.http

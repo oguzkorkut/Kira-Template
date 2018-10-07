@@ -121,9 +121,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-
-
-
                                         <div class="col-sm-6 input-control-label">
                                             <label class="col-form-label">Şifre</label>
                                             <div class="input-group input-control">
@@ -144,15 +141,37 @@
                                                     <div class="messages text-danger" *ngIf="systemInfoForm.controls.repassword.errors?.equalTo">Şifre eşleşmedi</div>
                                                 </div>
                                                 <div class="col-sm-6" style="margin: auto;">
-                                                    <div class="checkbox-fade fade-in-primary">
-                                                        <label>
-                                                            <input type="checkbox" value="smscode" formControlName="smscode">
-                                                            <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                                            <span>Şifre SMS ile gönderilsin</span>
-                                                        </label>
+                                                    <div class="col-sm-9">
+                                                        <div class="checkbox-fade fade-in-primary">
+                                                            <label>
+                                                                <input type="checkbox" value="smscodecb" formControlName="smscodecb">
+                                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                                <span>Şifre SMS ile gönderilsin</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox-fade fade-in-primary">
+                                                            <label>
+                                                                <input type="checkbox" value="epostacb" formControlName="epostacb">
+                                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                                <span>Şifre E-Posta ile gönderilsin</span>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 input-control-label">
+                                            <label class="col-form-label">Rol</label>
+                                            <select id="roles" name="roles" formControlName="roles" class="form-control input-control">
+                                                <option value="" selected>Seçiniz</option>
+                                                <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+                                            </select>
+                                            <div class="messages text-danger error label-control" *ngIf="!systemInfoForm.controls.roles.valid">Role seçiniz!</div>
+                                        </div>
+                                        <div class="col-sm-6 input-control-label">
+                                          
                                         </div>
                                     </div>
                                 </form>

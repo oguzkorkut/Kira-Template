@@ -8,6 +8,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { ReturnModel } from '../../../entity/ReturnModel';
 import { Profession } from '../../../entity/profession';
+import { UserService } from '../../../service/user.service';
+import { Role } from '../../../entity/role';
 
 @Component({
   selector: 'app-customer-create',
@@ -28,9 +30,9 @@ export class CustomerCreateComponent implements OnInit {
 
   public loading = false;
 
-  user: User;
-
   professions: Profession[] = [];
+
+  roles: Role[] = [];
 
   public personelInfoForm: FormGroup;
   public communicationInfoForm: FormGroup;
@@ -38,6 +40,7 @@ export class CustomerCreateComponent implements OnInit {
 
   constructor(private  phoneFilter: PhoneFilterPipe, 
               private kiraService: KiraService, 
+              private userService: UserService,
               private notificationsService: NotificationsService) { 
 
       this.mask = CONSTANTS.phoneMask;
@@ -45,13 +48,13 @@ export class CustomerCreateComponent implements OnInit {
 
 
   ngOnInit() {
-    this.user = new User;
-
     this.createPersonelInfoFormGroup();
     this.createCommunicationInfoFormGroup();
     this.createSystemInfoFormGroup();
 
     this.getProfessions();
+
+    this.getRoles();
   }
 
 
@@ -86,14 +89,18 @@ createSystemInfoFormGroup(){
   const profession= new FormControl('', Validators.required);
   const password= new FormControl('', Validators.required);
   const repassword = new FormControl('', [Validators.required, CustomValidators.equalTo(password)]);
-  const smscode= new FormControl('');
+  const smscodecb= new FormControl('');
+  const epostacb= new FormControl('');
+  const roles = new FormControl('', Validators.required);
 
   this.systemInfoForm = new FormGroup({
       username: username,
       profession: profession,
       password: password,
       repassword: repassword,
-      smscode: smscode
+      smscodecb: smscodecb,
+      epostacb: epostacb,
+      roles:roles
   });
 }
 
@@ -105,19 +112,77 @@ createSystemInfoFormGroup(){
     if (this.personelInfoForm.valid 
       && (this.communicationInfoForm.valid && this.phoneFilter.transform(this.communicationInfoForm.controls.phone.value) != '')
       && this.systemInfoForm.valid ) {
-      console.log("valid");
+      let user = new User;
+
+      user.firstname = this.personelInfoForm.controls.firstname.value;
+      user.surname = this.personelInfoForm.controls.surname.value;
+      user.tckn = this.personelInfoForm.controls.tckn.value;
+      user.vkn = this.personelInfoForm.controls.vkn.value;
+
+      user.phone = this.phoneFilter.transform(this.communicationInfoForm.controls.phone.value);
+      user.email = this.communicationInfoForm.controls.email.value;
+
+      user.username = this.systemInfoForm.controls.username.value;
+      user.title = this.systemInfoForm.controls.profession.value;
+      user.password = this.systemInfoForm.controls.password.value;
+
+      let roles: Role[] = []
+
+      let role: Role = new Role;
+
+      role.id = this.systemInfoForm.controls.roles.value;
+
+      for (let i = 0; i < this.roles.length; i++) {
+        if (this.roles[i].id == role.id) {
+          role.name = this.roles[i].name;
+          break;
+        }
+      }
+
+      role.name = this.systemInfoForm.controls.roles.value;
+
+      roles.push(role);
+
+      user.roleDtos = roles;
+
+      this.addUser(user)
     } else {
       console.log("invalid");
     }
 
   }
 
+  addUser(user: User):void{
+    this.loading = true;
+
+    this.loading = true;
+    this.userService.addUser(user)
+      .then((res: ReturnModel) => {
+  
+        this.loading = false;
+
+        if (res.status) {
+          this.notificationsService.success('Bilgi', res.message);
+        } else {
+          this.notificationsService.error('Hata', res.message);
+        }
+      })
+      .catch((res: Response) => {
+        this.notificationsService.error('Hata', res.statusText);
+        this.loading = false;
+      }
+    );
+  }
+
 
   getProfessions(): void {
 
+    this.loading = true;
+
     this.kiraService.getProfessions()
       .then((res: ReturnModel) => {
-  
+        this.loading = false;
+       
         if (res.status) {
           this.professions = res.result as Profession[];
   
@@ -129,6 +194,30 @@ createSystemInfoFormGroup(){
         }
       })
       .catch((res: Response) => {
+          this.loading = false;
+
+          this.notificationsService.error('Hata', res.statusText);
+        }
+      );
+  }
+
+  getRoles(): void {
+
+    this.loading = true;
+    this.userService.getRoles()
+      .then((res: ReturnModel) => {
+  
+        this.loading = false;
+
+        if (res.status) {
+          this.roles = res.result as Role[];
+        } else {
+          this.notificationsService.error('Hata', res.message);
+        }
+      })
+      .catch((res: Response) => {
+          this.loading = false;
+
           this.notificationsService.error('Hata', res.statusText);
         }
       );
