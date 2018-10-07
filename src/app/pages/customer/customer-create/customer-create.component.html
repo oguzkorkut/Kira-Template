@@ -37,7 +37,7 @@
                                         <label class="col-form-label">T.C. Kimlik Numarası</label>
                                         <div class="input-group input-control">
                                             <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                            <input type="text" id="tckn" name="tckn" formControlName="tckn"  class="form-control autonumber" currencyMask maxlength="11" minlength="11" [options]="{ prefix: '', thousands: '', decimal: '', align: 'left', allowZero: false }"/>
+                                            <input type="text" id="tckn" name="tckn" formControlName="tckn"  class="form-control autonumber" maxlength="11" minlength="11"/>
                                         </div>
                                         <div class="messages text-danger error label-control" *ngIf="!personelInfoForm.controls.tckn.valid">T.C. kimlik numarası giriniz!</div>
                                     </div>
@@ -45,9 +45,8 @@
                                         <label class="col-form-label">Vergi Kimlik Numarası</label>
                                         <div class="input-group input-control">
                                             <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                            <input type="text" id="vkn" name="vkn" formControlName="vkn" class="form-control">
+                                            <input type="text" id="vkn" name="vkn" formControlName="vkn" class="form-control autonumber" />
                                         </div>
-                                        <div class="messages text-danger error label-control" *ngIf="!personelInfoForm.controls.vkn.valid">Vergi kimlik numarası giriniz!</div>
                                     </div>
                                 </div>
                             </form>
@@ -63,9 +62,9 @@
                                         <label class="col-form-label">Telefon Numarası</label>
                                         <div class="input-group input-control">
                                             <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                            <input type="text" id="phone" name="phone" formControlName="phone" class="form-control">
+                                            <input type="text" id="phone" name="phone" formControlName="phone"  [textMask]="{mask: mask}" class="form-control">
                                         </div>
-                                        <div class="messages text-danger error label-control" *ngIf="!communicationInfoForm.controls.phone.valid">Telefon numarası giriniz!</div>
+                                        <div class="messages text-danger error label-control" *ngIf="communicationInfoForm.controls.phone.errors?.required">Cep telefonu numarası giriniz!</div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -116,26 +115,33 @@
                                             <h4 class="col-form-label">Meslek</h4>
                                             <select id="profession" name="profession" formControlName="profession" class="form-control input-control">
                                                 <option value="" selected>Seçiniz</option>
+                                                <option *ngFor="let profession of professions" [value]="profession.professionCode">{{profession.professionDesc}}</option>
                                             </select>
                                             <div class="messages text-danger error label-control" *ngIf="!systemInfoForm.controls.profession.valid">Meslek seçiniz!</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
+
+
+
                                         <div class="col-sm-6 input-control-label">
                                             <label class="col-form-label">Şifre</label>
                                             <div class="input-group input-control">
-                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                <span class="input-group-addon"><i class="icofont icofont-ui-password"></i></span>
                                                 <input type="password" id="password" name="password" formControlName="password" class="form-control">
                                             </div>
+                                            <div class="messages text-danger error" *ngIf="systemInfoForm.controls.password.errors?.required">Şifre giriniz!</div>
                                         </div>
                                         <div class="col-sm-6 input-control-label">
                                             <div class="form-group row"> 
                                                 <div class="col-sm-6">
                                                     <label class="col-form-label">Şifre(Tekrar)</label>
                                                     <div class="input-group input-control">
-                                                        <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                        <span class="input-group-addon"><i class="icofont icofont-ui-password"></i></span>
                                                         <input type="password" id="repassword" name="repassword"  formControlName="repassword"  class="form-control">
                                                     </div>
+                                                    <div class="messages text-danger" *ngIf="systemInfoForm.controls.repassword.errors?.required">Şifre tekrarı giriniz!</div>
+                                                    <div class="messages text-danger" *ngIf="systemInfoForm.controls.repassword.errors?.equalTo">Şifre eşleşmedi</div>
                                                 </div>
                                                 <div class="col-sm-6" style="margin: auto;">
                                                     <div class="checkbox-fade fade-in-primary">
