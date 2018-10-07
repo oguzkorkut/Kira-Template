@@ -105,7 +105,9 @@ createSystemInfoFormGroup(){
 }
 
   cancel(){
-
+    this.personelInfoForm.reset();
+    this.communicationInfoForm.reset();
+    this.systemInfoForm.reset();
   }
   
   save(){
@@ -161,6 +163,10 @@ createSystemInfoFormGroup(){
 
         if (res.status) {
           this.notificationsService.success('Bilgi', res.message);
+         
+          this.personelInfoForm.reset();
+          this.communicationInfoForm.reset();
+          this.systemInfoForm.reset();
         } else {
           this.notificationsService.error('Hata', res.message);
         }
